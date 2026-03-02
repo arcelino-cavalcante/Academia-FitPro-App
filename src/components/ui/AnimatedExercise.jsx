@@ -6,7 +6,16 @@ const AnimatedExercise = ({ images, name, size = 60, url, tipo }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     // Compatibilidade com o formato antigo (images array) ou novo (url string)
-    const mediaUrl = url || (images && images[0]);
+    let mediaUrl = url || (images && images[0]);
+
+    // Fallback: Se o caminho for local antigo, reconstrói para a API Estática Ultra Leve (GitHub)
+    if (mediaUrl && (mediaUrl.startsWith('/exercises/gifs/') || !mediaUrl.startsWith('http'))) {
+        const exerciseName = name || mediaUrl.split('/').pop()?.replace('.gif', '');
+        if (exerciseName) {
+            mediaUrl = `https://raw.githubusercontent.com/arcelino-cavalcante/api-exercicios-gym/main/videos/${encodeURIComponent(exerciseName)}.mp4`;
+        }
+    }
+
     const isVideo = tipo === 'video' || (mediaUrl && mediaUrl.toLowerCase().endsWith('.mp4'));
     const isGif = !isVideo && mediaUrl && mediaUrl.toLowerCase().endsWith('.gif');
 

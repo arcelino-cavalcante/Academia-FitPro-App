@@ -42,12 +42,20 @@ const WorkoutBuilder = ({
                 const data = await response.json();
 
                 // Normaliza os dados para o formato esperado pelo resto do App
-                const normalizedData = data.map(ex => ({
-                    ...ex,
-                    name: ex.nome || ex.name,
-                    muscleGroup: ex.musculo || ex.muscleGroup || 'Geral',
-                    images: ex.url ? [ex.url] : (ex.images || [])
-                }));
+                const normalizedData = data.map(ex => {
+                    const name = ex.nome || ex.name;
+                    // Mapeia para a URL real do vídeo na API Estática (GitHub)
+                    // Formato: https://raw.githubusercontent.com/arcelino-cavalcante/api-exercicios-gym/main/videos/Nome do Exercicio.mp4
+                    const videoUrl = `https://raw.githubusercontent.com/arcelino-cavalcante/api-exercicios-gym/main/videos/${encodeURIComponent(name)}.mp4`;
+
+                    return {
+                        ...ex,
+                        name,
+                        muscleGroup: ex.musculo || ex.muscleGroup || 'Geral',
+                        url: videoUrl,
+                        tipo: 'video'
+                    };
+                });
 
                 setExercises(normalizedData);
                 localStorage.setItem('gym-exercises-cache', JSON.stringify(normalizedData));
