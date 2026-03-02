@@ -220,13 +220,13 @@ const StudentWorkout = () => {
 
             {/* Exercises List */}
             {currentDay && (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', margin: '0 -0.25rem' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem', padding: '0 0.25rem' }}>
                         <h2 style={{
-                            fontSize: '1.5rem',
+                            fontSize: '1.4rem',
                             fontWeight: 900,
                             borderLeft: '4px solid var(--primary)',
-                            paddingLeft: '1rem',
+                            paddingLeft: '0.8rem',
                             background: 'linear-gradient(90deg, rgba(0, 123, 255, 0.1) 0%, transparent 100%)',
                             color: '#fff',
                             letterSpacing: '-0.02em',
@@ -245,27 +245,27 @@ const StudentWorkout = () => {
 
                     {currentDay.exercises.map((ex, exIdx) => (
                         <div key={ex.exId || exIdx} style={{
-                            padding: '1.5rem',
+                            padding: '1rem',
                             border: '1px solid rgba(255,255,255,0.05)',
                             background: 'rgba(255,255,255,0.02)',
                             position: 'relative',
                             overflow: 'hidden',
                             borderRadius: '16px',
-                            boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+                            boxShadow: '0 6px 24px 0 rgba(0, 0, 0, 0.3)',
                             transition: 'var(--transition-normal)'
                         }}>
                             {ex.isAdvanced && <div style={{ position: 'absolute', top: 0, left: 0, width: '4px', height: '100%', background: 'var(--primary)' }}></div>}
 
-                            <div style={{ display: 'flex', gap: '1.25rem', flexWrap: 'nowrap', marginBottom: '1.25rem' }}>
+                            <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'nowrap', marginBottom: '1rem' }}>
                                 <div style={{ flexShrink: 0 }}>
-                                    <AnimatedExercise images={ex.images} name={ex.name} url={ex.url || ex.videoUrl} tipo={ex.tipo} size={90} />
+                                    <AnimatedExercise images={ex.images} name={ex.name} url={ex.url || ex.videoUrl} tipo={ex.tipo} size={75} />
                                 </div>
 
                                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                         <div>
-                                            <h3 style={{ fontSize: '1.25rem', fontWeight: 800, lineHeight: 1.2, margin: 0, letterSpacing: '-0.02em' }}>{ex.name}</h3>
-                                            <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '0.3rem', fontWeight: 600 }}>{ex.muscleGroup} • {ex.equipment}</p>
+                                            <h3 style={{ fontSize: '1.1rem', fontWeight: 800, lineHeight: 1.2, margin: 0, letterSpacing: '-0.02em' }}>{ex.name}</h3>
+                                            <p style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: '0.3rem', fontWeight: 600 }}>{ex.muscleGroup} • {ex.equipment}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -287,19 +287,19 @@ const StudentWorkout = () => {
                                     </div>
                                 </div>
                             ) : (
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                                     {ex.detailedSets?.map((set, sIdx) => (
-                                        <div key={sIdx} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', padding: '0.75rem', borderRadius: '12px', transition: 'var(--transition-fast)' }}>
+                                        <div key={sIdx} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', padding: '0.6rem 0.6rem', borderRadius: '12px', transition: 'var(--transition-fast)' }}>
                                             <div style={{
-                                                width: '28px',
-                                                height: '28px',
+                                                width: '24px',
+                                                height: '24px',
                                                 borderRadius: '50%',
                                                 background: 'rgba(0, 123, 255, 0.1)',
                                                 border: '1px solid var(--primary)',
                                                 display: 'flex',
                                                 alignItems: 'center',
                                                 justifyContent: 'center',
-                                                fontSize: '0.8rem',
+                                                fontSize: '0.7rem',
                                                 fontWeight: 900,
                                                 color: 'var(--primary)',
                                                 boxShadow: '0 0 10px rgba(0, 123, 255, 0.2)'
@@ -307,11 +307,11 @@ const StudentWorkout = () => {
                                                 {sIdx + 1}
                                             </div>
                                             <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                                                    <span style={{ fontSize: '0.95rem', fontWeight: 800, color: '#fff' }}>{set.reps} <span style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', fontWeight: 600 }}>REPS</span></span>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
+                                                    <span style={{ fontSize: '0.9rem', fontWeight: 800, color: '#fff' }}>{set.reps} <span style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', fontWeight: 600 }}>REPS</span></span>
                                                     <span style={{
-                                                        fontSize: '0.65rem',
-                                                        padding: '0.2rem 0.6rem',
+                                                        fontSize: '0.6rem',
+                                                        padding: '0.15rem 0.4rem',
                                                         borderRadius: '6px',
                                                         fontWeight: 800,
                                                         textTransform: 'uppercase',
@@ -332,8 +332,8 @@ const StudentWorkout = () => {
                                                     {/* Method Badge (Only if not Normal) */}
                                                     {set.method && set.method !== 'Normal' && (
                                                         <span style={{
-                                                            fontSize: '0.65rem',
-                                                            padding: '0.2rem 0.6rem',
+                                                            fontSize: '0.6rem',
+                                                            padding: '0.15rem 0.4rem',
                                                             borderRadius: '6px',
                                                             fontWeight: 800,
                                                             textTransform: 'uppercase',
@@ -352,8 +352,8 @@ const StudentWorkout = () => {
                                                             display: 'flex',
                                                             alignItems: 'center',
                                                             gap: '0.2rem',
-                                                            fontSize: '0.65rem',
-                                                            padding: '0.2rem 0.6rem',
+                                                            fontSize: '0.6rem',
+                                                            padding: '0.15rem 0.4rem',
                                                             borderRadius: '6px',
                                                             fontWeight: 800,
                                                             textTransform: 'uppercase',
