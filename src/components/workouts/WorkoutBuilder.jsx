@@ -45,15 +45,16 @@ const WorkoutBuilder = ({
                 const normalizedData = data.map(ex => {
                     const name = ex.nome || ex.name;
                     // Mapeia para a URL real do vídeo na API Estática (GitHub)
-                    // Formato: https://raw.githubusercontent.com/arcelino-cavalcante/api-exercicios-gym/main/videos/Nome do Exercicio.mp4
-                    const videoUrl = `https://raw.githubusercontent.com/arcelino-cavalcante/api-exercicios-gym/main/videos/${encodeURIComponent(name)}.mp4`;
+                    // Prioriza a URL que vem do banco se existir, senão constrói a padrão
+                    const finalUrl = ex.url || ex.videoUrl || `https://raw.githubusercontent.com/arcelino-cavalcante/api-exercicios-gym/main/videos/${encodeURIComponent(name)}.mp4`;
+                    const finalTipo = ex.tipo || (finalUrl.toLowerCase().endsWith('.mp4') ? 'video' : 'gif');
 
                     return {
                         ...ex,
                         name,
                         muscleGroup: ex.musculo || ex.muscleGroup || 'Geral',
-                        url: videoUrl,
-                        tipo: 'video'
+                        url: finalUrl,
+                        tipo: finalTipo
                     };
                 });
 
