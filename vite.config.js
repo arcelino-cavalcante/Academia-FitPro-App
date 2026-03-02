@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react-swc'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
-  base: "/", // Alterado para "/" para suportar domínios customizados
+  base: "/Academia-FitPro-App/", // Restaurado para acesso imediato via GitHub Pages
   plugins: [
     react(),
     VitePWA({
