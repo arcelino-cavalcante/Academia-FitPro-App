@@ -5,6 +5,7 @@ import { useAuthStore } from '../../store/authStore';
 import { useStudentStore } from '../../store/studentStore';
 import { useWorkoutStore } from '../../store/workoutStore';
 import SyncIndicator from '../ui/SyncIndicator';
+import Header from './Header';
 import './Layout.css';
 
 const Layout = ({ children }) => {
@@ -81,6 +82,7 @@ const Layout = ({ children }) => {
 
             {/* Main Content Area */}
             <main className="main-content">
+                <Header />
                 {children || <Outlet />}
             </main>
 
