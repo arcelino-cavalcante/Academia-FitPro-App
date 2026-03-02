@@ -57,18 +57,20 @@ const Header = () => {
     return (
         <header style={{
             display: 'flex',
-            justifyContent: 'flex-end',
-            padding: '1rem', /* Reduced padding slightly */
-            margin: '0 -1rem 1rem -1rem', /* Negative margin to pull it flush against the viewport sides */
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: 'calc(1rem + env(safe-area-inset-top, 0px)) 1.5rem 1rem 1.5rem',
+            margin: '0 -1rem 1.5rem -1rem',
             position: 'sticky',
             top: 0,
             zIndex: 100,
-            background: 'rgba(5, 10, 20, 0.8)',
-            backdropFilter: 'blur(12px)',
+            background: 'rgba(5, 10, 20, 0.85)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
             borderBottom: '1px solid rgba(255,255,255,0.05)',
-            marginBottom: '1rem'
+            boxShadow: '0 4px 30px rgba(0,0,0,0.5)'
         }}>
-            <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
                 <h1 style={{
                     fontSize: '1.5rem',
                     fontWeight: 800,
