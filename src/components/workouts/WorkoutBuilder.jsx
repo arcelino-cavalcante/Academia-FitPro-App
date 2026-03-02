@@ -177,22 +177,22 @@ const WorkoutBuilder = ({
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                marginBottom: '2rem',
+                marginBottom: '1.5rem',
                 flexWrap: 'nowrap',
-                gap: '1rem',
+                gap: '0.75rem',
                 position: 'sticky',
                 top: 0,
                 background: 'var(--bg-color)',
                 zIndex: 10,
                 padding: '0.5rem 0'
             }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flex: 1 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flex: 1, minWidth: 0 }}>
                     <button
                         className="btn-icon"
-                        style={{ width: '36px', height: '36px', background: 'rgba(255,255,255,0.05)', borderRadius: '12px' }}
+                        style={{ width: '32px', height: '32px', background: 'rgba(255,255,255,0.05)', borderRadius: '10px', flexShrink: 0 }}
                         onClick={onCancel}
                     >
-                        <X size={18} />
+                        <X size={16} />
                     </button>
                     <input
                         type="text"
@@ -203,12 +203,12 @@ const WorkoutBuilder = ({
                             background: 'transparent',
                             border: 'none',
                             color: 'var(--primary)',
-                            fontSize: '1.25rem',
+                            fontSize: '1.1rem',
                             fontWeight: 800,
                             outline: 'none',
                             borderBottom: '1px solid rgba(74, 222, 128, 0.2)',
                             width: '100%',
-                            maxWidth: '220px'
+                            minWidth: 0
                         }}
                     />
                 </div>
@@ -216,26 +216,26 @@ const WorkoutBuilder = ({
                     className="btn-primary"
                     onClick={onSave}
                     style={{
-                        padding: '0.6rem 1.25rem',
-                        fontSize: '0.8rem',
-                        borderRadius: '14px',
+                        padding: '0.5rem 1rem',
+                        fontSize: '0.75rem',
+                        borderRadius: '12px',
                         flexShrink: 0
                     }}
                 >
-                    <Save size={16} /> {title.includes('Individual') ? 'Salvar' : 'Salvar Biblioteca'}
+                    <Save size={14} /> {title.includes('Individual') ? 'Salvar' : 'Salvar Biblioteca'}
                 </button>
             </div>
 
             {/* Metadata Row - Cleaner Selects */}
-            <div className="glass-panel" style={{ padding: '1.25rem', marginBottom: '2rem', background: 'rgba(255,255,255,0.01)', border: '1px solid rgba(255,255,255,0.05)' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="glass-panel" style={{ padding: '1rem', marginBottom: '1.5rem', background: 'rgba(255,255,255,0.01)', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
                     <div>
-                        <label style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.5px', display: 'block', marginBottom: '0.5rem' }}>Público Alvo</label>
+                        <label style={{ fontSize: '0.6rem', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.5px', display: 'block', marginBottom: '0.4rem' }}>Público Alvo</label>
                         <select
                             value={metadata.level}
                             onChange={e => setMetadata({ ...metadata, level: e.target.value })}
                             className="glass-panel"
-                            style={{ width: '100%', padding: '0.6rem', fontSize: '0.85rem', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px' }}
+                            style={{ width: '100%', padding: '0.5rem', fontSize: '0.8rem', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '10px' }}
                         >
                             <option value="Iniciante">Iniciante</option>
                             <option value="Intermediário">Intermediário</option>
@@ -244,12 +244,12 @@ const WorkoutBuilder = ({
                         </select>
                     </div>
                     <div>
-                        <label style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.5px', display: 'block', marginBottom: '0.5rem' }}>Estratégia</label>
+                        <label style={{ fontSize: '0.6rem', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.5px', display: 'block', marginBottom: '0.4rem' }}>Estratégia</label>
                         <select
                             value={metadata.goal}
                             onChange={e => setMetadata({ ...metadata, goal: e.target.value })}
                             className="glass-panel"
-                            style={{ width: '100%', padding: '0.6rem', fontSize: '0.85rem', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px' }}
+                            style={{ width: '100%', padding: '0.5rem', fontSize: '0.8rem', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '10px' }}
                         >
                             <option value="Hipertrofia">Hipertrofia</option>
                             <option value="Queima de Gordura">Queima de Gordura</option>
@@ -298,7 +298,7 @@ const WorkoutBuilder = ({
                                 <div key={ex.exId} className="glass-panel" style={{ padding: '1rem', background: 'rgba(255,255,255,0.015)', marginBottom: '1rem', border: ex.isAdvanced ? '1px solid var(--primary-glow)' : '1px solid rgba(255,255,255,0.06)' }}>
                                     <div style={{ display: 'flex', gap: '1rem', flexWrap: 'nowrap' }}>
                                         <div style={{ flexShrink: 0 }}>
-                                            <AnimatedExercise images={ex.images} name={ex.name} size={90} />
+                                            <AnimatedExercise images={ex.images} name={ex.name} url={ex.url} tipo={ex.tipo} size={85} />
                                         </div>
 
                                         <div style={{ flex: 1, minWidth: 0 }}>
@@ -432,14 +432,15 @@ const WorkoutBuilder = ({
             {isExerciseModalOpen && (
                 <div className="modal-overlay" style={{ zIndex: 3000 }}>
                     <div className="modal-content glass-panel animate-scale-in" style={{
-                        maxHeight: '85vh',
-                        width: '92%',
-                        maxWidth: '600px',
+                        maxHeight: '100vh',
+                        height: '100%',
+                        width: '100%',
+                        maxWidth: 'none',
                         display: 'flex',
                         flexDirection: 'column',
-                        padding: '1.5rem',
-                        borderRadius: '24px',
-                        background: 'rgba(21, 24, 30, 0.95)',
+                        padding: '1.25rem',
+                        borderRadius: 0,
+                        background: 'rgba(21, 24, 30, 0.98)',
                         backdropFilter: 'blur(32px)'
                     }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
@@ -509,11 +510,11 @@ const WorkoutBuilder = ({
                                     }}
                                 >
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                                        <div style={{ borderRadius: '10px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)' }}>
-                                            <AnimatedExercise images={ex.images} name={ex.name} size={50} />
+                                        <div style={{ borderRadius: '10px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', flexShrink: 0 }}>
+                                            <AnimatedExercise images={ex.images} name={ex.name} url={ex.url} tipo={ex.tipo} size={50} />
                                         </div>
-                                        <div>
-                                            <p style={{ fontWeight: 700, margin: 0, fontSize: '0.85rem' }}>{ex.name}</p>
+                                        <div style={{ minWidth: 0, overflow: 'hidden' }}>
+                                            <p style={{ fontWeight: 700, margin: 0, fontSize: '0.85rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{ex.name}</p>
                                             <span style={{ fontSize: '0.6rem', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: 600 }}>{ex.muscleGroup}</span>
                                         </div>
                                     </div>
