@@ -137,7 +137,8 @@ const WorkoutBuilder = ({
                 const additional = Array(newCount - currentSets.length).fill().map(() => ({
                     reps: newRoutine[dIdx].exercises[eIdx].reps || '12',
                     intensity: 'Moderada',
-                    method: 'Normal'
+                    method: 'Normal',
+                    time: '60s'
                 }));
                 newRoutine[dIdx].exercises[eIdx].detailedSets = [...currentSets, ...additional];
             } else {
@@ -156,7 +157,8 @@ const WorkoutBuilder = ({
             exercise.detailedSets = Array(setCount).fill().map(() => ({
                 reps: exercise.reps,
                 intensity: 'Moderada',
-                method: exercise.method || 'Normal'
+                method: exercise.method || 'Normal',
+                time: '60s'
             }));
             exercise.isAdvanced = true;
         } else {
@@ -173,7 +175,7 @@ const WorkoutBuilder = ({
 
     return (
         <div className="workout-builder animate-slide-up" style={{ paddingBottom: '120px' }}>
-            {/* Top Bar - Clean & Refined */}
+            {/* Top Bar - Premium Sticky Header */}
             <div style={{
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -183,33 +185,39 @@ const WorkoutBuilder = ({
                 gap: '0.75rem',
                 position: 'sticky',
                 top: 0,
-                background: 'var(--bg-color)',
-                zIndex: 10,
-                padding: '0.5rem 0'
+                background: 'rgba(5, 7, 12, 0.8)',
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)',
+                zIndex: 50,
+                padding: '1rem',
+                margin: '-1rem -1rem 1.5rem -1rem', /* Pull to edges if parent has padding */
+                borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.5)'
             }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flex: 1, minWidth: 0 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', flex: 1, minWidth: 0 }}>
                     <button
                         className="btn-icon"
-                        style={{ width: '32px', height: '32px', background: 'rgba(255,255,255,0.05)', borderRadius: '10px', flexShrink: 0 }}
+                        style={{ width: '36px', height: '36px', background: 'rgba(255,255,255,0.05)', borderRadius: '12px', flexShrink: 0 }}
                         onClick={onCancel}
                     >
-                        <X size={16} />
+                        <X size={18} />
                     </button>
                     <input
                         type="text"
                         value={metadata.name}
-                        placeholder="Nome do Modelo..."
+                        placeholder="Nome do Treino..."
                         onChange={e => setMetadata({ ...metadata, name: e.target.value })}
                         style={{
                             background: 'transparent',
                             border: 'none',
-                            color: 'var(--primary)',
-                            fontSize: '1.1rem',
+                            color: '#fff',
+                            fontSize: '1.2rem',
                             fontWeight: 800,
                             outline: 'none',
-                            borderBottom: '1px solid rgba(74, 222, 128, 0.2)',
+                            borderBottom: '1px dashed rgba(255,255,255,0.2)',
                             width: '100%',
-                            minWidth: 0
+                            minWidth: 0,
+                            padding: '0.2rem 0'
                         }}
                     />
                 </div>
@@ -217,13 +225,17 @@ const WorkoutBuilder = ({
                     className="btn-primary"
                     onClick={onSave}
                     style={{
-                        padding: '0.5rem 1rem',
+                        padding: '0.6rem 1.2rem',
                         fontSize: '0.75rem',
                         borderRadius: '12px',
-                        flexShrink: 0
+                        flexShrink: 0,
+                        textTransform: 'uppercase',
+                        fontWeight: 900,
+                        letterSpacing: '0.5px',
+                        boxShadow: '0 4px 15px rgba(74, 222, 128, 0.3)'
                     }}
                 >
-                    <Save size={14} /> {title.includes('Individual') ? 'Salvar' : 'Salvar Biblioteca'}
+                    <Save size={16} /> SALVAR
                 </button>
             </div>
 
@@ -297,165 +309,374 @@ const WorkoutBuilder = ({
                         <div style={{ padding: '0.75rem' }}>
                             {day.exercises.map((ex, eIdx) => (
                                 <div key={ex.exId} className="glass-panel" style={{
-                                    padding: '0.85rem',
-                                    background: 'rgba(255,255,255,0.015)',
-                                    marginBottom: '0.75rem',
-                                    border: ex.isAdvanced ? '1px solid rgba(74, 222, 128, 0.3)' : '1px solid rgba(255,255,255,0.05)',
+                                    padding: '1.25rem',
+                                    background: 'rgba(255,255,255,0.02)',
+                                    marginBottom: '1rem',
+                                    border: ex.isAdvanced ? '1px solid rgba(74, 222, 128, 0.4)' : '1px solid rgba(255,255,255,0.08)',
                                     borderRadius: '20px',
-                                    position: 'relative'
+                                    position: 'relative',
+                                    boxShadow: ex.isAdvanced ? '0 4px 20px rgba(74, 222, 128, 0.05)' : 'none',
+                                    transition: 'var(--transition-normal)'
                                 }}>
-                                    <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'nowrap' }}>
+                                    {/* Header: Thumbnail + Info + Actions */}
+                                    <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', marginBottom: '1.25rem' }}>
+                                        {/* Thumbnail Area */}
                                         <div style={{
                                             flexShrink: 0,
-                                            borderRadius: '14px',
+                                            borderRadius: '16px',
                                             overflow: 'hidden',
-                                            border: '1px solid rgba(255,255,255,0.06)',
-                                            background: 'rgba(0,0,0,0.2)'
+                                            border: '1px solid rgba(255,255,255,0.1)',
+                                            background: 'rgba(0,0,0,0.4)',
+                                            width: '80px',
+                                            height: '80px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            boxShadow: 'inset 0 0 10px rgba(255,255,255,0.05)'
                                         }}>
-                                            <AnimatedExercise images={ex.images} name={ex.name} url={ex.url} tipo={ex.tipo} size={70} />
+                                            <AnimatedExercise images={ex.images} name={ex.name} url={ex.url} tipo={ex.tipo} size={80} />
                                         </div>
 
-                                        <div style={{ flex: 1, minWidth: 0, paddingTop: '2px' }}>
-                                            <div style={{
-                                                display: 'flex',
-                                                justifyContent: 'space-between',
-                                                alignItems: 'flex-start',
-                                                marginBottom: '0.5rem'
-                                            }}>
-                                                <div style={{ minWidth: 0, paddingRight: '1rem' }}>
+                                        {/* Info & Actions */}
+                                        <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                                                <div style={{ minWidth: 0, paddingRight: '0.5rem' }}>
                                                     <h4 style={{
-                                                        fontSize: '0.95rem',
+                                                        fontFamily: 'var(--font-heading)',
+                                                        fontSize: '1.1rem',
                                                         margin: 0,
-                                                        fontWeight: 800,
-                                                        whiteSpace: 'nowrap',
-                                                        overflow: 'hidden',
-                                                        textOverflow: 'ellipsis',
-                                                        color: '#fff'
+                                                        fontWeight: 700,
+                                                        lineHeight: 1.2,
+                                                        color: 'var(--text-primary)',
+                                                        marginBottom: '0.25rem'
                                                     }}>{ex.name}</h4>
                                                     <p style={{
-                                                        fontSize: '0.6rem',
+                                                        fontSize: '0.7rem',
                                                         color: 'var(--primary)',
                                                         textTransform: 'uppercase',
-                                                        fontWeight: 900,
-                                                        margin: '0.1rem 0 0 0',
-                                                        letterSpacing: '0.5px',
-                                                        opacity: 0.8
+                                                        fontWeight: 800,
+                                                        margin: 0,
+                                                        letterSpacing: '0.5px'
                                                     }}>{ex.muscleGroup}</p>
                                                 </div>
                                                 <button
                                                     onClick={() => handleRemoveExercise(dIdx, eIdx)}
                                                     style={{
-                                                        color: 'rgba(239, 68, 68, 0.5)',
-                                                        padding: '0.4rem',
-                                                        marginTop: '-0.3rem',
-                                                        marginRight: '-0.3rem'
+                                                        color: 'rgba(239, 68, 68, 0.6)',
+                                                        padding: '0.5rem',
+                                                        marginTop: '-0.5rem',
+                                                        marginRight: '-0.5rem',
+                                                        borderRadius: '50%',
+                                                        transition: 'all 0.2s ease',
+                                                        cursor: 'pointer'
                                                     }}
+                                                    onMouseOver={(e) => { e.currentTarget.style.color = '#ef4444'; e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)'; }}
+                                                    onMouseOut={(e) => { e.currentTarget.style.color = 'rgba(239, 68, 68, 0.6)'; e.currentTarget.style.background = 'transparent'; }}
                                                 >
-                                                    <Trash2 size={16} />
+                                                    <Trash2 size={18} />
                                                 </button>
                                             </div>
 
-                                            <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: '0.75rem' }}>
+                                            {/* Config Toggle Button */}
+                                            <div style={{ marginTop: '0.8rem' }}>
                                                 <button
                                                     onClick={() => handleToggleAdvanced(dIdx, eIdx)}
                                                     style={{
-                                                        padding: '0.3rem 0.6rem',
-                                                        fontSize: '0.55rem',
-                                                        borderRadius: '30px',
-                                                        background: ex.isAdvanced ? 'var(--primary)' : 'rgba(255,255,255,0.04)',
-                                                        color: ex.isAdvanced ? '#000' : 'rgba(255,255,255,0.5)',
-                                                        border: '1px solid rgba(255,255,255,0.05)',
-                                                        fontWeight: 900,
+                                                        width: '100%',
+                                                        padding: '0.6rem 0.75rem',
+                                                        fontSize: '0.65rem',
+                                                        borderRadius: '12px',
+                                                        background: ex.isAdvanced ? 'var(--primary)' : 'rgba(255,255,255,0.03)',
+                                                        color: ex.isAdvanced ? '#000' : 'var(--text-secondary)',
+                                                        border: ex.isAdvanced ? 'none' : '1px dashed rgba(255,255,255,0.15)',
+                                                        fontWeight: 800,
                                                         cursor: 'pointer',
                                                         display: 'flex',
+                                                        justifyContent: 'center',
                                                         alignItems: 'center',
-                                                        gap: '0.25rem',
-                                                        letterSpacing: '0.3px'
+                                                        gap: '0.4rem',
+                                                        letterSpacing: '0.5px',
+                                                        transition: 'all 0.2s ease',
+                                                        boxShadow: ex.isAdvanced ? '0 0 10px rgba(0, 123, 255, 0.3)' : 'none'
                                                     }}
                                                 >
-                                                    <Settings size={10} /> {ex.isAdvanced ? 'SÉRIES DETALHADAS' : 'PADRÃO'}
+                                                    <Settings size={14} /> {ex.isAdvanced ? 'CONFIGURAÇÃO AVANÇADA' : 'CONFIGURAÇÃO PADRÃO'}
                                                 </button>
                                             </div>
+                                        </div>
+                                    </div>
 
-                                            {!ex.isAdvanced ? (
-                                                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                                                    <div>
-                                                        <label style={{ fontSize: '0.55rem', color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase', fontWeight: 900, letterSpacing: '0.8px' }}>Séries</label>
-                                                        <div className="no-scrollbar" style={{ display: 'flex', gap: '0.35rem', flexWrap: 'nowrap', overflowX: 'auto', marginTop: '0.25rem', paddingBottom: '0.1rem' }}>
-                                                            {setsPresets.map(s => <button key={s} onClick={() => handleUpdateExerciseField(dIdx, eIdx, 'sets', s)} style={{ padding: '0.3rem 0.75rem', borderRadius: '8px', fontSize: '0.65rem', fontWeight: 900, background: ex.sets === s ? 'var(--primary)' : 'rgba(255,255,255,0.04)', color: ex.sets === s ? '#000' : 'rgba(255,255,255,0.3)', border: '1px solid rgba(255,255,255,0.04)', cursor: 'pointer', transition: 'all 0.2s' }}>{s}</button>)}
-                                                        </div>
+                                    {/* Body: Configuration Area (Full Width) */}
+                                    <div style={{
+                                        background: 'rgba(0,0,0,0.15)',
+                                        borderRadius: '16px',
+                                        padding: '1rem',
+                                        border: '1px solid rgba(255,255,255,0.03)'
+                                    }}>
+                                        {!ex.isAdvanced ? (
+                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                                                {/* Sets & Reps Selection */}
+                                                <div>
+                                                    <label style={{ fontSize: '0.65rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '1px', marginBottom: '0.5rem', display: 'block' }}>Séries</label>
+                                                    <div className="no-scrollbar" style={{ display: 'flex', gap: '0.5rem', flexWrap: 'nowrap', overflowX: 'auto', paddingBottom: '0.25rem' }}>
+                                                        {setsPresets.map(s => (
+                                                            <button key={s} onClick={() => handleUpdateExerciseField(dIdx, eIdx, 'sets', s)}
+                                                                style={{
+                                                                    padding: '0.5rem 1rem',
+                                                                    borderRadius: '10px',
+                                                                    fontSize: '0.8rem',
+                                                                    fontWeight: 800,
+                                                                    background: ex.sets === s ? 'var(--primary)' : 'rgba(255,255,255,0.03)',
+                                                                    color: ex.sets === s ? '#000' : 'var(--text-secondary)',
+                                                                    border: ex.sets === s ? '1px solid var(--primary-hover)' : '1px solid rgba(255,255,255,0.08)',
+                                                                    cursor: 'pointer',
+                                                                    transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                                                                    boxShadow: ex.sets === s ? '0 2px 10px rgba(0, 123, 255, 0.2)' : 'none',
+                                                                    flexShrink: 0
+                                                                }}>
+                                                                {s}
+                                                            </button>
+                                                        ))}
                                                     </div>
-                                                    <div>
-                                                        <label style={{ fontSize: '0.55rem', color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase', fontWeight: 900, letterSpacing: '0.8px' }}>Repetições</label>
-                                                        <div className="no-scrollbar" style={{ display: 'flex', gap: '0.35rem', flexWrap: 'nowrap', overflowX: 'auto', marginTop: '0.25rem', paddingBottom: '0.1rem' }}>
-                                                            {repsPresets.map(r => <button key={r} onClick={() => handleUpdateExerciseField(dIdx, eIdx, 'reps', r)} style={{ padding: '0.3rem 0.75rem', borderRadius: '8px', fontSize: '0.65rem', fontWeight: 900, background: ex.reps === r ? 'var(--primary)' : 'rgba(255,255,255,0.04)', color: ex.reps === r ? '#000' : 'rgba(255,255,255,0.3)', border: '1px solid rgba(255,255,255,0.04)', cursor: 'pointer', transition: 'all 0.2s', whiteSpace: 'nowrap' }}>{r}</button>)}
-                                                        </div>
+                                                </div>
+
+                                                <div>
+                                                    <label style={{ fontSize: '0.65rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '1px', marginBottom: '0.5rem', display: 'block' }}>Repetições</label>
+                                                    <div className="no-scrollbar" style={{ display: 'flex', gap: '0.5rem', flexWrap: 'nowrap', overflowX: 'auto', paddingBottom: '0.25rem' }}>
+                                                        {repsPresets.map(r => (
+                                                            <button key={r} onClick={() => handleUpdateExerciseField(dIdx, eIdx, 'reps', r)}
+                                                                style={{
+                                                                    padding: '0.5rem 1rem',
+                                                                    borderRadius: '10px',
+                                                                    fontSize: '0.8rem',
+                                                                    fontWeight: 800,
+                                                                    background: ex.reps === r ? 'var(--primary)' : 'rgba(255,255,255,0.03)',
+                                                                    color: ex.reps === r ? '#000' : 'var(--text-secondary)',
+                                                                    border: ex.reps === r ? '1px solid var(--primary-hover)' : '1px solid rgba(255,255,255,0.08)',
+                                                                    cursor: 'pointer',
+                                                                    transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                                                                    whiteSpace: 'nowrap',
+                                                                    boxShadow: ex.reps === r ? '0 2px 10px rgba(0, 123, 255, 0.2)' : 'none',
+                                                                    flexShrink: 0
+                                                                }}>
+                                                                {r}
+                                                            </button>
+                                                        ))}
                                                     </div>
-                                                    <div style={{ display: 'flex', gap: '0.4rem', marginTop: '0.1rem' }}>
-                                                        <select value={ex.method} onChange={e => handleUpdateExerciseField(dIdx, eIdx, 'method', e.target.value)} className="glass-panel" style={{ flex: 1, padding: '0.4rem', fontSize: '0.7rem', borderRadius: '10px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.05)', color: '#fff' }}>
-                                                            {methods.map(m => <option key={m} value={m}>{m}</option>)}
+                                                </div>
+
+                                                {/* Method and Rest Input */}
+                                                <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 2fr) minmax(0, 1fr)', gap: '0.75rem' }}>
+                                                    <div>
+                                                        <label style={{ fontSize: '0.65rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '1px', marginBottom: '0.5rem', display: 'block' }}>Técnica/Método</label>
+                                                        <select value={ex.method} onChange={e => handleUpdateExerciseField(dIdx, eIdx, 'method', e.target.value)}
+                                                            className="glass-panel"
+                                                            style={{
+                                                                width: '100%',
+                                                                padding: '0.65rem',
+                                                                fontSize: '0.8rem',
+                                                                fontWeight: 600,
+                                                                borderRadius: '12px',
+                                                                background: 'rgba(255,255,255,0.05)',
+                                                                border: '1px solid rgba(255,255,255,0.1)',
+                                                                color: 'var(--text-primary)',
+                                                                appearance: 'none',
+                                                                outline: 'none'
+                                                            }}>
+                                                            {methods.map(m => <option key={m} value={m} style={{ background: 'var(--bg-color)' }}>{m}</option>)}
                                                         </select>
-                                                        <div style={{ position: 'relative', width: '90px' }}>
+                                                    </div>
+                                                    <div>
+                                                        <label style={{ fontSize: '0.65rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '1px', marginBottom: '0.5rem', display: 'block' }}>Descanso</label>
+                                                        <div style={{ position: 'relative' }}>
                                                             <input
                                                                 type="text"
                                                                 value={ex.rest}
                                                                 onChange={e => handleUpdateExerciseField(dIdx, eIdx, 'rest', e.target.value)}
-                                                                placeholder="Descanso"
-                                                                style={{ width: '100%', padding: '0.4rem 0.4rem 0.4rem 1.8rem', fontSize: '0.7rem', borderRadius: '10px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.05)', color: '#fff' }}
+                                                                placeholder="ex: 60s"
+                                                                className="glass-panel"
+                                                                style={{
+                                                                    width: '100%',
+                                                                    padding: '0.65rem 0.65rem 0.65rem 2.2rem',
+                                                                    fontSize: '0.8rem',
+                                                                    fontWeight: 600,
+                                                                    borderRadius: '12px',
+                                                                    background: 'rgba(255,255,255,0.05)',
+                                                                    border: '1px solid rgba(255,255,255,0.1)',
+                                                                    color: 'var(--text-primary)',
+                                                                    outline: 'none'
+                                                                }}
                                                             />
-                                                            <Clock size={12} style={{ position: 'absolute', left: '0.6rem', top: '50%', transform: 'translateY(-50%)', opacity: 0.4 }} />
+                                                            <Clock size={14} style={{ position: 'absolute', left: '0.75rem', top: '50%', transform: 'translateY(-50%)', opacity: 0.5, color: 'var(--text-primary)' }} />
                                                         </div>
                                                     </div>
                                                 </div>
-                                            ) : (
-                                                <div className="animate-fade-in" style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '12px' }}>
-                                                    <div style={{ display: 'grid', gridTemplateColumns: '40px 1fr 1fr 1fr 40px', gap: '0.75rem', padding: '0 0.75rem 0.5rem 0.75rem', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '0.5rem' }}>
-                                                        <span style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', fontWeight: 800 }}>#</span>
-                                                        <span style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', fontWeight: 800 }}>REPS</span>
-                                                        <span style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', fontWeight: 800 }}>INTENSIDADE</span>
-                                                        <span style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', fontWeight: 800 }}>MÉTODO</span>
-                                                    </div>
+                                            </div>
+                                        ) : (
+                                            <div className="animate-fade-in">
+                                                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                                                     {ex.detailedSets?.map((set, sIdx) => (
-                                                        <div key={sIdx} className="detailed-set-row">
-                                                            <div style={{ fontWeight: 800, color: 'var(--primary)', fontSize: '0.9rem' }}>{sIdx + 1}º</div>
-                                                            <input
-                                                                type="text"
-                                                                value={set.reps}
-                                                                onChange={e => handleUpdateDetailedSet(dIdx, eIdx, sIdx, 'reps', e.target.value)}
-                                                                placeholder="ex: 12-15"
-                                                                style={{ background: 'rgba(255,255,255,0.05)', border: 'none', padding: '0.4rem', borderRadius: '6px', color: '#fff', fontSize: '0.85rem', width: '100%' }}
-                                                            />
-                                                            <select
-                                                                value={set.intensity}
-                                                                onChange={e => handleUpdateDetailedSet(dIdx, eIdx, sIdx, 'intensity', e.target.value)}
-                                                                className={`intensity-badge ${set.intensity === 'Aquecimento' ? 'intensity-warmup' :
-                                                                    set.intensity === 'Ajuste' ? 'intensity-adjust' :
-                                                                        set.intensity === 'Moderada' ? 'intensity-moderate' :
-                                                                            set.intensity === 'Alta' ? 'intensity-high' : 'intensity-max'
-                                                                    }`}
-                                                                style={{ border: 'none', outline: 'none', cursor: 'pointer' }}
-                                                            >
-                                                                <option value="Aquecimento">Aquecimento</option>
-                                                                <option value="Ajuste">Ajuste/Feed</option>
-                                                                <option value="Moderada">Moderada</option>
-                                                                <option value="Alta">Carga Alta</option>
-                                                                <option value="Máxima">Até a Falha</option>
-                                                            </select>
-                                                            <select
-                                                                value={set.method}
-                                                                onChange={e => handleUpdateDetailedSet(dIdx, eIdx, sIdx, 'method', e.target.value)}
-                                                                style={{ background: 'rgba(255,255,255,0.05)', border: 'none', padding: '0.4rem', borderRadius: '6px', color: '#fff', fontSize: '0.8rem', width: '100%' }}
-                                                            >
-                                                                {methods.map(m => <option key={m} value={m}>{m}</option>)}
-                                                            </select>
-                                                            <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                                                <Clock size={12} />
+                                                        <div key={sIdx} className="detailed-set-row" style={{
+                                                            background: 'rgba(0,0,0,0.2)',
+                                                            border: '1px solid rgba(255,255,255,0.05)',
+                                                            borderRadius: '16px',
+                                                            padding: '1rem',
+                                                            margin: 0,
+                                                            position: 'relative',
+                                                            overflow: 'hidden'
+                                                        }}>
+                                                            {/* Elegant Set Badge */}
+                                                            <div style={{
+                                                                position: 'absolute',
+                                                                top: 0,
+                                                                left: 0,
+                                                                background: 'var(--primary)',
+                                                                color: '#000',
+                                                                fontWeight: 900,
+                                                                fontSize: '0.65rem',
+                                                                padding: '0.3rem 0.8rem',
+                                                                borderBottomRightRadius: '12px',
+                                                                boxShadow: '2px 2px 10px rgba(74, 222, 128, 0.2)'
+                                                            }}>
+                                                                SÉRIE {sIdx + 1}
+                                                            </div>
+
+                                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginTop: '1.2rem', width: '100%' }}>
+
+                                                                {/* Row for Reps and Intensity */}
+                                                                <div style={{ display: 'flex', gap: '0.85rem', width: '100%', alignItems: 'stretch' }}>
+                                                                    {/* Reps */}
+                                                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', flex: '1 1 40%' }}>
+                                                                        <label style={{ fontSize: '0.55rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.5px' }}>Reps</label>
+                                                                        <input
+                                                                            type="text"
+                                                                            value={set.reps}
+                                                                            onChange={e => handleUpdateDetailedSet(dIdx, eIdx, sIdx, 'reps', e.target.value)}
+                                                                            placeholder="ex: 12-15"
+                                                                            className="glass-panel"
+                                                                            style={{
+                                                                                background: 'rgba(255,255,255,0.03)',
+                                                                                border: '1px solid rgba(255,255,255,0.08)',
+                                                                                padding: '0.75rem',
+                                                                                borderRadius: '10px',
+                                                                                color: '#fff',
+                                                                                fontSize: '0.85rem',
+                                                                                width: '100%',
+                                                                                outline: 'none',
+                                                                                fontWeight: 700,
+                                                                                textAlign: 'center',
+                                                                                transition: 'all 0.2s ease',
+                                                                                boxSizing: 'border-box'
+                                                                            }}
+                                                                            onFocus={(e) => { e.currentTarget.style.border = '1px solid var(--primary)'; e.currentTarget.style.boxShadow = '0 0 0 2px rgba(74, 222, 128, 0.1)'; }}
+                                                                            onBlur={(e) => { e.currentTarget.style.border = '1px solid rgba(255,255,255,0.08)'; e.currentTarget.style.boxShadow = 'none'; }}
+                                                                        />
+                                                                    </div>
+
+                                                                    {/* Intensity */}
+                                                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', flex: '1 1 60%' }}>
+                                                                        <label style={{ fontSize: '0.55rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.5px' }}>Intensidade</label>
+                                                                        <select
+                                                                            value={set.intensity}
+                                                                            onChange={e => handleUpdateDetailedSet(dIdx, eIdx, sIdx, 'intensity', e.target.value)}
+                                                                            className={`intensity-badge ${set.intensity === 'Aquecimento' ? 'intensity-warmup' :
+                                                                                set.intensity === 'Ajuste' ? 'intensity-adjust' :
+                                                                                    set.intensity === 'Moderada' ? 'intensity-moderate' :
+                                                                                        set.intensity === 'Alta' ? 'intensity-high' : 'intensity-max'
+                                                                                }`}
+                                                                            style={{
+                                                                                border: '1px solid rgba(255,255,255,0.05)',
+                                                                                outline: 'none',
+                                                                                cursor: 'pointer',
+                                                                                borderRadius: '10px',
+                                                                                padding: '0.75rem 0.5rem',
+                                                                                fontSize: '0.75rem',
+                                                                                fontWeight: 800,
+                                                                                textAlign: 'center',
+                                                                                appearance: 'none',
+                                                                                width: '100%',
+                                                                                boxSizing: 'border-box',
+                                                                                height: '100%'
+                                                                            }}
+                                                                        >
+                                                                            <option value="Aquecimento">Aquecimento</option>
+                                                                            <option value="Ajuste">Ajuste/Feed</option>
+                                                                            <option value="Moderada">Moderada</option>
+                                                                            <option value="Alta">Carga Alta</option>
+                                                                            <option value="Máxima">Até a Falha</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+
+                                                                {/* Full Width Row for Method and Time */}
+                                                                <div style={{ display: 'flex', gap: '0.85rem', width: '100%', alignItems: 'stretch' }}>
+
+                                                                    {/* Method */}
+                                                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', flex: '1 1 50%' }}>
+                                                                        <label style={{ fontSize: '0.55rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.5px' }}>Método</label>
+                                                                        <select
+                                                                            value={set.method}
+                                                                            onChange={e => handleUpdateDetailedSet(dIdx, eIdx, sIdx, 'method', e.target.value)}
+                                                                            className="glass-panel"
+                                                                            style={{
+                                                                                background: 'rgba(255,255,255,0.03)',
+                                                                                border: '1px solid rgba(255,255,255,0.08)',
+                                                                                padding: '0.75rem',
+                                                                                borderRadius: '10px',
+                                                                                color: '#fff',
+                                                                                fontSize: '0.8rem',
+                                                                                width: '100%',
+                                                                                outline: 'none',
+                                                                                appearance: 'none',
+                                                                                fontWeight: 700,
+                                                                                transition: 'all 0.2s ease',
+                                                                                boxSizing: 'border-box'
+                                                                            }}
+                                                                            onFocus={(e) => { e.currentTarget.style.border = '1px solid var(--primary)'; e.currentTarget.style.boxShadow = '0 0 0 2px rgba(74, 222, 128, 0.1)'; }}
+                                                                            onBlur={(e) => { e.currentTarget.style.border = '1px solid rgba(255,255,255,0.08)'; e.currentTarget.style.boxShadow = 'none'; }}
+                                                                        >
+                                                                            {methods.map(m => <option key={m} value={m} style={{ background: 'var(--bg-color)' }}>{m}</option>)}
+                                                                        </select>
+                                                                    </div>
+
+                                                                    {/* Time / Rest */}
+                                                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', flex: '1 1 50%' }}>
+                                                                        <label style={{ fontSize: '0.55rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.5px' }}>Tempo</label>
+                                                                        <div style={{ position: 'relative', width: '100%' }}>
+                                                                            <input
+                                                                                type="text"
+                                                                                value={set.time || '60s'}
+                                                                                onChange={e => handleUpdateDetailedSet(dIdx, eIdx, sIdx, 'time', e.target.value)}
+                                                                                placeholder="ex: 60s"
+                                                                                className="glass-panel"
+                                                                                style={{
+                                                                                    background: 'rgba(255,255,255,0.03)',
+                                                                                    border: '1px solid rgba(255,255,255,0.08)',
+                                                                                    padding: '0.75rem 0.75rem 0.75rem 2rem',
+                                                                                    borderRadius: '10px',
+                                                                                    color: '#fff',
+                                                                                    fontSize: '0.85rem',
+                                                                                    width: '100%',
+                                                                                    outline: 'none',
+                                                                                    fontWeight: 700,
+                                                                                    transition: 'all 0.2s ease',
+                                                                                    boxSizing: 'border-box'
+                                                                                }}
+                                                                                onFocus={(e) => { e.currentTarget.style.border = '1px solid var(--primary)'; e.currentTarget.style.boxShadow = '0 0 0 2px rgba(74, 222, 128, 0.1)'; }}
+                                                                                onBlur={(e) => { e.currentTarget.style.border = '1px solid rgba(255,255,255,0.08)'; e.currentTarget.style.boxShadow = 'none'; }}
+                                                                            />
+                                                                            <Clock size={14} style={{ position: 'absolute', left: '0.6rem', top: '50%', transform: 'translateY(-50%)', opacity: 0.5, color: '#fff' }} />
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
                                                             </div>
                                                         </div>
                                                     ))}
                                                 </div>
-                                            )}
-                                        </div>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             ))}

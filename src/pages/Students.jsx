@@ -152,56 +152,80 @@ const Students = () => {
             ) : selectedStudent && !isAssignModalOpen ? (
                 <div className="student-detail-view animate-slide-up">
                     {/* Detail Header */}
-                    <header className="detail-header glass-panel" style={{ padding: '1.5rem', marginBottom: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <header className="detail-header" style={{
+                        padding: '1.5rem',
+                        marginBottom: '1.5rem',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        background: 'rgba(255,255,255,0.02)',
+                        border: '1px solid rgba(255,255,255,0.05)',
+                        borderRadius: '16px',
+                        boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)'
+                    }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                            <button className="btn-icon" onClick={() => setSelectedStudent(null)} style={{ background: 'rgba(255,255,255,0.05)' }}>
+                            <button className="btn-icon" onClick={() => setSelectedStudent(null)} style={{ background: 'rgba(255,255,255,0.05)', width: '36px', height: '36px', borderRadius: '50%' }}>
                                 <X size={20} />
                             </button>
                             <div>
-                                <h2 style={{ fontSize: '1.5rem', margin: 0 }}>{selectedStudent.name}</h2>
-                                <p style={{ fontSize: '0.85rem', color: 'var(--primary)', margin: 0 }}>{selectedStudent.email}</p>
+                                <h2 style={{ fontSize: '1.5rem', fontWeight: 800, margin: 0, letterSpacing: '-0.5px', color: '#fff' }}>{selectedStudent.name}</h2>
+                                <p style={{ fontSize: '0.85rem', color: 'var(--primary)', fontWeight: 600, margin: 0 }}>{selectedStudent.email}</p>
                             </div>
                         </div>
                         <div style={{ display: 'flex', gap: '0.5rem' }}>
-                            <span className="badge">{selectedStudent.objective || 'Sem Objetivo'}</span>
+                            <span className="badge" style={{ background: 'var(--primary-glow)', color: 'var(--primary)', fontWeight: 700 }}>
+                                {selectedStudent.objective || 'Sem Objetivo'}
+                            </span>
                         </div>
                     </header>
 
                     {/* Tabs Navigation */}
-                    <div className="tabs-nav glass-panel" style={{ display: 'flex', padding: '0.5rem', gap: '0.5rem', marginBottom: '1.5rem' }}>
-                        <button
-                            onClick={() => setActiveTab('ativos')}
-                            style={{
-                                flex: 1, padding: '0.75rem', borderRadius: '8px', border: 'none',
-                                background: activeTab === 'ativos' ? 'var(--primary)' : 'transparent',
-                                color: activeTab === 'ativos' ? '#000' : 'var(--text-secondary)',
-                                fontWeight: 700, cursor: 'pointer', transition: 'all 0.2s'
-                            }}
-                        >
-                            Treinos Ativos
-                        </button>
-                        <button
-                            onClick={() => setActiveTab('prescrever')}
-                            style={{
-                                flex: 1, padding: '0.75rem', borderRadius: '8px', border: 'none',
-                                background: activeTab === 'prescrever' ? 'var(--primary)' : 'transparent',
-                                color: activeTab === 'prescrever' ? '#000' : 'var(--text-secondary)',
-                                fontWeight: 700, cursor: 'pointer', transition: 'all 0.2s'
-                            }}
-                        >
-                            Prescrever
-                        </button>
-                        <button
-                            onClick={() => setActiveTab('evolucao')}
-                            style={{
-                                flex: 1, padding: '0.75rem', borderRadius: '8px', border: 'none',
-                                background: activeTab === 'evolucao' ? 'var(--primary)' : 'transparent',
-                                color: activeTab === 'evolucao' ? '#000' : 'var(--text-secondary)',
-                                fontWeight: 700, cursor: 'pointer', transition: 'all 0.2s'
-                            }}
-                        >
-                            Evolução
-                        </button>
+                    <div style={{ padding: '0 2px', marginBottom: '1.5rem' }}>
+                        <div className="tabs-nav" style={{
+                            display: 'flex',
+                            padding: '0.35rem',
+                            gap: '0.25rem',
+                            background: 'rgba(255,255,255,0.03)',
+                            border: '1px solid rgba(255,255,255,0.05)',
+                            borderRadius: '14px'
+                        }}>
+                            <button
+                                onClick={() => setActiveTab('ativos')}
+                                style={{
+                                    flex: 1, padding: '0.75rem', borderRadius: '10px', border: 'none',
+                                    background: activeTab === 'ativos' ? 'var(--primary)' : 'transparent',
+                                    color: activeTab === 'ativos' ? '#000' : 'rgba(255,255,255,0.5)',
+                                    fontWeight: 700, cursor: 'pointer', transition: 'all 0.3s ease',
+                                    boxShadow: activeTab === 'ativos' ? '0 4px 15px rgba(74, 222, 128, 0.3)' : 'none'
+                                }}
+                            >
+                                Treinos Ativos
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('prescrever')}
+                                style={{
+                                    flex: 1, padding: '0.75rem', borderRadius: '10px', border: 'none',
+                                    background: activeTab === 'prescrever' ? 'var(--primary)' : 'transparent',
+                                    color: activeTab === 'prescrever' ? '#000' : 'rgba(255,255,255,0.5)',
+                                    fontWeight: 700, cursor: 'pointer', transition: 'all 0.3s ease',
+                                    boxShadow: activeTab === 'prescrever' ? '0 4px 15px rgba(74, 222, 128, 0.3)' : 'none'
+                                }}
+                            >
+                                Prescrever
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('evolucao')}
+                                style={{
+                                    flex: 1, padding: '0.75rem', borderRadius: '10px', border: 'none',
+                                    background: activeTab === 'evolucao' ? 'var(--primary)' : 'transparent',
+                                    color: activeTab === 'evolucao' ? '#000' : 'rgba(255,255,255,0.5)',
+                                    fontWeight: 700, cursor: 'pointer', transition: 'all 0.3s ease',
+                                    boxShadow: activeTab === 'evolucao' ? '0 4px 15px rgba(74, 222, 128, 0.3)' : 'none'
+                                }}
+                            >
+                                Evolução
+                            </button>
+                        </div>
                     </div>
 
                     {/* Tab Content */}
@@ -209,32 +233,91 @@ const Students = () => {
                         {activeTab === 'ativos' && (
                             <div className="animate-fade-in">
                                 {workouts.find(w => w.studentId === selectedStudent.id) ? (
-                                    <div className="glass-panel" style={{ padding: '1.5rem' }}>
+                                    <div style={{
+                                        padding: '1.5rem',
+                                        background: 'rgba(255,255,255,0.02)',
+                                        border: '1px solid rgba(255,255,255,0.05)',
+                                        borderRadius: '16px',
+                                        boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+                                        transition: 'var(--transition-normal)'
+                                    }}
+                                        onMouseOver={(e) => {
+                                            e.currentTarget.style.transform = 'translateY(-5px)';
+                                            e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                                            e.currentTarget.style.boxShadow = '0 15px 40px rgba(0, 123, 255, 0.1)';
+                                        }}
+                                        onMouseOut={(e) => {
+                                            e.currentTarget.style.transform = 'none';
+                                            e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
+                                            e.currentTarget.style.boxShadow = '0 8px 32px 0 rgba(0, 0, 0, 0.3)';
+                                        }}>
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-                                            <h3 style={{ fontSize: '1.1rem', color: 'var(--primary)' }}>Rotina Atual</h3>
+                                            <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--primary)', margin: 0 }}>Rotina Atual</h3>
                                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                                                 <button
                                                     onClick={() => handleDeleteWorkout(selectedStudent.id)}
                                                     className="btn-secondary"
-                                                    style={{ border: '1px solid rgba(239, 68, 68, 0.2)', color: 'var(--error)', padding: '0.4rem 0.8rem', fontSize: '0.75rem' }}
+                                                    style={{
+                                                        border: '1px solid rgba(239, 68, 68, 0.3)',
+                                                        color: 'var(--error)',
+                                                        padding: '0.4rem 0.8rem',
+                                                        fontSize: '0.8rem',
+                                                        background: 'transparent',
+                                                        transition: 'all 0.2s ease',
+                                                        borderRadius: '8px'
+                                                    }}
+                                                    onMouseOver={(e) => { e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)'; }}
+                                                    onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; }}
                                                 >
                                                     <Trash2 size={14} style={{ marginRight: '4px' }} /> Apagar Treino
                                                 </button>
-                                                <span className="badge" style={{ background: 'var(--primary-glow)', color: 'var(--primary)' }}>
+                                                <span className="badge" style={{ background: 'rgba(255,255,255,0.05)', color: 'var(--text-secondary)' }}>
                                                     Atualizado em: {new Date(workouts.find(w => w.studentId === selectedStudent.id).updatedAt).toLocaleDateString()}
                                                 </span>
                                             </div>
                                         </div>
                                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem' }}>
                                             {workouts.find(w => w.studentId === selectedStudent.id).routine.map(day => (
-                                                <div key={day.id} className="glass-panel" style={{ padding: '1rem', background: 'rgba(255,255,255,0.03)' }}>
+                                                <div
+                                                    key={day.id}
+                                                    style={{
+                                                        padding: '1.25rem',
+                                                        background: 'rgba(255,255,255,0.02)',
+                                                        border: '1px solid rgba(255,255,255,0.05)',
+                                                        borderRadius: '12px',
+                                                        cursor: 'pointer',
+                                                        transition: 'var(--transition-normal)'
+                                                    }}
+                                                    onMouseOver={(e) => {
+                                                        e.currentTarget.style.transform = 'translateY(-5px)';
+                                                        e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                                                        e.currentTarget.style.boxShadow = '0 15px 40px rgba(0, 123, 255, 0.1)';
+                                                    }}
+                                                    onMouseOut={(e) => {
+                                                        e.currentTarget.style.transform = 'none';
+                                                        e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
+                                                        e.currentTarget.style.boxShadow = 'none';
+                                                    }}
+                                                >
                                                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
-                                                        <div style={{ background: 'var(--primary)', color: '#000', width: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 900 }}>
+                                                        <div style={{
+                                                            background: 'var(--primary)',
+                                                            color: '#000',
+                                                            width: '28px',
+                                                            height: '28px',
+                                                            borderRadius: '50%',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            justifyContent: 'center',
+                                                            fontSize: '0.85rem',
+                                                            fontWeight: 900,
+                                                            boxShadow: '0 2px 10px rgba(74, 222, 128, 0.3)'
+                                                        }}>
                                                             {day.id}
                                                         </div>
-                                                        <span style={{ fontWeight: 700 }}>{day.dayName}</span>
+                                                        <span style={{ fontWeight: 800, fontSize: '1.1rem', color: '#fff' }}>{day.dayName}</span>
                                                     </div>
-                                                    <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: 0 }}>
+                                                    <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0, fontWeight: 500 }}>
                                                         {day.exercises.length} exercícios
                                                     </p>
                                                 </div>
@@ -253,15 +336,57 @@ const Students = () => {
 
                         {activeTab === 'prescrever' && (
                             <div className="animate-fade-in" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-                                <div className="glass-panel hover-card" onClick={() => setIsAssignModalOpen(true)} style={{ padding: '2rem', textAlign: 'center', cursor: 'pointer' }}>
-                                    <Award size={48} color="var(--primary)" style={{ marginBottom: '1rem' }} />
-                                    <h3>Usar da Biblioteca</h3>
-                                    <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Escolha um dos seus modelos prontos e defina a agenda semanal.</p>
+                                <div
+                                    onClick={() => setIsAssignModalOpen(true)}
+                                    style={{
+                                        padding: '2rem',
+                                        textAlign: 'center',
+                                        cursor: 'pointer',
+                                        background: 'rgba(255,255,255,0.02)',
+                                        border: '1px solid rgba(255,255,255,0.05)',
+                                        borderRadius: '16px',
+                                        transition: 'all 0.3s ease'
+                                    }}
+                                    onMouseOver={(e) => {
+                                        e.currentTarget.style.transform = 'translateY(-5px)';
+                                        e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                                        e.currentTarget.style.boxShadow = '0 15px 40px rgba(0, 123, 255, 0.1)';
+                                    }}
+                                    onMouseOut={(e) => {
+                                        e.currentTarget.style.transform = 'none';
+                                        e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
+                                        e.currentTarget.style.boxShadow = 'none';
+                                    }}
+                                >
+                                    <Award size={48} color="var(--primary)" style={{ marginBottom: '1.25rem' }} />
+                                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, margin: '0 0 0.5rem 0', color: '#fff' }}>Usar da Biblioteca</h3>
+                                    <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0 }}>Escolha um dos seus modelos prontos e defina a agenda semanal.</p>
                                 </div>
-                                <div className="glass-panel hover-card" onClick={() => handleOpenIndividual(selectedStudent)} style={{ padding: '2rem', textAlign: 'center', cursor: 'pointer' }}>
-                                    <UserPlus size={48} color="var(--accent)" style={{ marginBottom: '1rem' }} />
-                                    <h3>Montar Sob Medida</h3>
-                                    <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Crie um treino do zero, exclusivo para este aluno, sem salvar na biblioteca.</p>
+                                <div
+                                    onClick={() => handleOpenIndividual(selectedStudent)}
+                                    style={{
+                                        padding: '2rem',
+                                        textAlign: 'center',
+                                        cursor: 'pointer',
+                                        background: 'rgba(255,255,255,0.02)',
+                                        border: '1px solid rgba(255,255,255,0.05)',
+                                        borderRadius: '16px',
+                                        transition: 'all 0.3s ease'
+                                    }}
+                                    onMouseOver={(e) => {
+                                        e.currentTarget.style.transform = 'translateY(-5px)';
+                                        e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                                        e.currentTarget.style.boxShadow = '0 15px 40px rgba(0, 123, 255, 0.1)';
+                                    }}
+                                    onMouseOut={(e) => {
+                                        e.currentTarget.style.transform = 'none';
+                                        e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
+                                        e.currentTarget.style.boxShadow = 'none';
+                                    }}
+                                >
+                                    <UserPlus size={48} color="var(--accent)" style={{ marginBottom: '1.25rem' }} />
+                                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, margin: '0 0 0.5rem 0', color: '#fff' }}>Montar Sob Medida</h3>
+                                    <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0 }}>Crie um treino do zero, exclusivo para este aluno, sem salvar na biblioteca.</p>
                                 </div>
                             </div>
                         )}
@@ -270,24 +395,48 @@ const Students = () => {
                             <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                                 {/* Summary Stats Cards */}
                                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
-                                    <div className="glass-panel" style={{ padding: '1rem', textAlign: 'center', background: 'var(--primary-glow)' }}>
-                                        <div style={{ fontSize: '0.7rem', color: 'var(--primary)', fontWeight: 800, textTransform: 'uppercase' }}>Treinos</div>
-                                        <div style={{ fontSize: '1.5rem', fontWeight: 900 }}>{sessions?.length || 0}</div>
+                                    <div style={{
+                                        padding: '1.25rem',
+                                        textAlign: 'center',
+                                        background: 'var(--primary-glow)',
+                                        border: '1px solid rgba(74, 222, 128, 0.2)',
+                                        borderRadius: '16px',
+                                        boxShadow: '0 4px 15px rgba(74, 222, 128, 0.1)',
+                                        transition: 'var(--transition-normal)'
+                                    }}>
+                                        <div style={{ fontSize: '0.75rem', color: 'var(--primary)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Treinos</div>
+                                        <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#fff' }}>{sessions?.length || 0}</div>
                                     </div>
-                                    <div className="glass-panel" style={{ padding: '1rem', textAlign: 'center', background: 'rgba(255,255,255,0.02)' }}>
-                                        <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', fontWeight: 800, textTransform: 'uppercase' }}>Tempo Médio</div>
-                                        <div style={{ fontSize: '1.5rem', fontWeight: 900 }}>
+                                    <div style={{
+                                        padding: '1.25rem',
+                                        textAlign: 'center',
+                                        background: 'rgba(255,255,255,0.02)',
+                                        border: '1px solid rgba(255,255,255,0.05)',
+                                        borderRadius: '16px',
+                                        boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+                                        transition: 'var(--transition-normal)'
+                                    }}>
+                                        <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Duração Média</div>
+                                        <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#fff' }}>
                                             {sessions?.length > 0
                                                 ? Math.round(sessions.reduce((acc, s) => acc + (s.duration || 0), 0) / sessions.length)
-                                                : 0} min
+                                                : 0}<span style={{ fontSize: '1rem', color: 'var(--text-secondary)' }}>m</span>
                                         </div>
                                     </div>
-                                    <div className="glass-panel" style={{ padding: '1rem', textAlign: 'center', background: 'rgba(255,255,255,0.02)' }}>
-                                        <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', fontWeight: 800, textTransform: 'uppercase' }}>Frequência</div>
-                                        <div style={{ fontSize: '1.5rem', fontWeight: 900 }}>
+                                    <div style={{
+                                        padding: '1.25rem',
+                                        textAlign: 'center',
+                                        background: 'rgba(255,255,255,0.02)',
+                                        border: '1px solid rgba(255,255,255,0.05)',
+                                        borderRadius: '16px',
+                                        boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+                                        transition: 'var(--transition-normal)'
+                                    }}>
+                                        <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Frequência</div>
+                                        <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#fff' }}>
                                             {sessions?.length > 0
                                                 ? Math.min(100, Math.round((sessions.length / 12) * 100))
-                                                : 0}%
+                                                : 0}<span style={{ fontSize: '1rem', color: 'var(--text-secondary)' }}>%</span>
                                         </div>
                                     </div>
                                 </div>
@@ -379,28 +528,87 @@ const Students = () => {
                 </div>
             ) : (
                 <>
-                    <header className="page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <header className="page-header" style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        marginBottom: '2rem',
+                        gap: '1rem'
+                    }}>
                         <div>
-                            <h1>Alunos</h1>
-                            <p>Gerencie seus alunos e prescreva treinos</p>
+                            <h1 style={{
+                                fontSize: '2rem',
+                                fontWeight: 900,
+                                margin: 0,
+                                background: 'linear-gradient(135deg, #fff 0%, var(--primary) 100%)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                letterSpacing: '-0.5px'
+                            }}>Alunos</h1>
+                            <p style={{ color: 'var(--text-secondary)', margin: '0.25rem 0 0 0', fontSize: '0.9rem' }}>Gerencie seus alunos e prescreva treinos</p>
                         </div>
-                        <button className="btn-primary" onClick={() => setIsAddModalOpen(true)}>
-                            <Plus size={20} /> Novo Aluno
+                        <button
+                            className="btn-primary"
+                            onClick={() => setIsAddModalOpen(true)}
+                            style={{
+                                padding: '0.75rem 1.25rem',
+                                borderRadius: '12px',
+                                fontSize: '0.9rem',
+                                fontWeight: 800,
+                                boxShadow: '0 4px 15px rgba(74, 222, 128, 0.3)',
+                                letterSpacing: '0.5px',
+                                flexShrink: 0
+                            }}
+                        >
+                            <Plus size={18} /> NOVO
                         </button>
                     </header>
 
                     <div className="search-bar" style={{ marginBottom: '2rem' }}>
-                        <div className="search-input-wrapper">
-                            <Search size={20} color={searchTerm ? "var(--primary)" : "var(--text-secondary)"} />
+                        <div
+                            className="glass-panel"
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                padding: '0.75rem 1rem',
+                                borderRadius: '14px',
+                                background: 'rgba(255,255,255,0.03)',
+                                border: '1px solid rgba(255,255,255,0.08)',
+                                gap: '0.75rem',
+                                transition: 'all 0.3s ease'
+                            }}
+                            onFocus={(e) => { e.currentTarget.style.border = '1px solid var(--primary)'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(74, 222, 128, 0.15)'; }}
+                            onBlur={(e) => { e.currentTarget.style.border = '1px solid rgba(255,255,255,0.08)'; e.currentTarget.style.boxShadow = 'none'; }}
+                        >
+                            <Search size={20} color={searchTerm ? "var(--primary)" : "var(--text-secondary)"} style={{ flexShrink: 0 }} />
                             <input
                                 type="text"
                                 placeholder="Buscar aluno por nome ou e-mail..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
+                                style={{
+                                    background: 'transparent',
+                                    border: 'none',
+                                    color: '#fff',
+                                    fontSize: '0.95rem',
+                                    width: '100%',
+                                    outline: 'none',
+                                    minWidth: 0
+                                }}
                             />
                             {searchTerm && (
-                                <button onClick={() => setSearchTerm('')} className="search-clear-btn" style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex' }}>
-                                    <X size={18} />
+                                <button
+                                    onClick={() => setSearchTerm('')}
+                                    className="btn-icon"
+                                    style={{
+                                        padding: '4px',
+                                        width: '24px',
+                                        height: '24px',
+                                        background: 'rgba(255,255,255,0.1)',
+                                        flexShrink: 0
+                                    }}
+                                >
+                                    <X size={14} />
                                 </button>
                             )}
                         </div>
@@ -415,29 +623,62 @@ const Students = () => {
                             filteredStudents.map(student => (
                                 <div
                                     key={student.id}
-                                    className="student-card glass-panel hover-card"
+                                    className="student-card hover-card"
                                     onClick={() => { setSelectedStudent(student); setActiveTab('ativos'); }}
-                                    style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', cursor: 'pointer' }}
+                                    style={{
+                                        padding: '1.5rem',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        gap: '1.25rem',
+                                        cursor: 'pointer',
+                                        background: 'rgba(255,255,255,0.02)',
+                                        border: '1px solid rgba(255,255,255,0.05)',
+                                        borderRadius: '16px',
+                                        transition: 'all 0.3s ease'
+                                    }}
                                 >
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                                        <div>
-                                            <h3 style={{ fontSize: '1.25rem', margin: '0 0 0.25rem 0' }}>{student.name}</h3>
-                                            <p style={{ fontSize: '0.8rem', color: 'var(--primary)', margin: 0 }}>{student.email}</p>
+                                        <div style={{ paddingRight: '1rem' }}>
+                                            <h3 style={{ fontSize: '1.35rem', fontWeight: 800, margin: '0 0 0.25rem 0', color: '#fff', letterSpacing: '-0.3px' }}>{student.name}</h3>
+                                            <p style={{ fontSize: '0.85rem', color: 'var(--primary)', margin: 0, fontWeight: 600 }}>{student.email}</p>
                                         </div>
-                                        <button className="btn-icon text-error" onClick={(e) => { e.stopPropagation(); removeStudent(student.id); }} style={{ padding: '0.5rem' }}>
-                                            <Trash2 size={18} />
+                                        <button
+                                            className="btn-icon"
+                                            onClick={(e) => { e.stopPropagation(); removeStudent(student.id); }}
+                                            style={{
+                                                padding: '0.5rem',
+                                                background: 'rgba(239, 68, 68, 0.1)',
+                                                color: 'var(--error)',
+                                                borderRadius: '10px'
+                                            }}
+                                        >
+                                            <Trash2 size={16} />
                                         </button>
                                     </div>
 
                                     <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                                        <span className="badge">{student.phone || 'Sem fone'}</span>
-                                        <span className="badge" style={{ background: 'var(--primary-glow)', color: 'var(--primary)' }}>{student.objective || 'Objetivo N/A'}</span>
+                                        <span className="badge" style={{ background: 'rgba(255,255,255,0.05)', color: 'var(--text-secondary)' }}>
+                                            {student.phone || 'Sem fone'}
+                                        </span>
+                                        <span className="badge" style={{ background: 'var(--primary-glow)', color: 'var(--primary)', fontWeight: 700 }}>
+                                            {student.objective || 'Objetivo N/A'}
+                                        </span>
                                     </div>
 
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: 'auto', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
-                                        <Calendar size={14} />
+                                    <div style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '0.5rem',
+                                        marginTop: 'auto',
+                                        paddingTop: '1rem',
+                                        borderTop: '1px solid rgba(255,255,255,0.05)',
+                                        fontSize: '0.85rem',
+                                        color: 'var(--text-secondary)',
+                                        fontWeight: 600
+                                    }}>
+                                        <Calendar size={14} color="var(--primary)" />
                                         <span>Ver detalhes e treinos</span>
-                                        <ChevronRight size={14} style={{ marginLeft: 'auto' }} />
+                                        <ChevronRight size={16} style={{ marginLeft: 'auto', color: 'rgba(255,255,255,0.3)' }} />
                                     </div>
                                 </div>
                             ))
