@@ -18,11 +18,8 @@ const Dashboard = () => {
                 <div style={{ position: 'absolute', borderRadius: '50%', filter: 'blur(80px)', background: 'var(--accent)', width: '300px', height: '300px', top: '40%', right: '-5%', opacity: 0.1, animation: 'float 20s infinite alternate ease-in-out', animationDelay: '-5s' }}></div>
             </div>
 
-            <header style={{ marginBottom: '3rem', position: 'relative', zIndex: 10 }}>
-                <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: '2.5rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
-                    Olá, <span style={{ background: 'linear-gradient(to right, var(--primary), var(--primary-hover))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{profile?.name || user?.displayName || 'Treinador'}</span>
-                </h1>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '1.125rem' }}>Resumo do seu FitPro hoje</p>
+            <header style={{ marginBottom: '2rem', position: 'relative', zIndex: 10 }}>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '1.125rem', margin: 0 }}>Resumo do seu FitPro hoje, <strong style={{ color: '#fff' }}>{profile?.name?.split(' ')[0] || user?.displayName?.split(' ')[0] || 'Treinador'}</strong></p>
             </header>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', position: 'relative', zIndex: 10 }}>

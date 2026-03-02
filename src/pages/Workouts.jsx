@@ -66,16 +66,10 @@ const Workouts = () => {
         <div className="animate-fade-in workouts-page" style={{ paddingBottom: '8rem' }}>
             <header style={{
                 display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'baseline',
-                marginBottom: '2.5rem',
-                flexWrap: 'wrap',
-                gap: '1rem'
+                justifyContent: 'flex-end',
+                alignItems: 'center',
+                marginBottom: '1.5rem',
             }}>
-                <div>
-                    <h1 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.25rem' }}>Meus Modelos 🏋️</h1>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Sua biblioteca de prescrições mestres</p>
-                </div>
                 <button className="btn-primary" onClick={handleCreateNew} style={{ padding: '0.6rem 1.2rem', fontSize: '0.8rem', borderRadius: '14px' }}>
                     <Plus size={18} /> Novo Modelo
                 </button>

@@ -530,23 +530,10 @@ const Students = () => {
                 <>
                     <header className="page-header" style={{
                         display: 'flex',
-                        justifyContent: 'space-between',
+                        justifyContent: 'flex-end',
                         alignItems: 'center',
                         marginBottom: '2rem',
-                        gap: '1rem'
                     }}>
-                        <div>
-                            <h1 style={{
-                                fontSize: '2rem',
-                                fontWeight: 900,
-                                margin: 0,
-                                background: 'linear-gradient(135deg, #fff 0%, var(--primary) 100%)',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                                letterSpacing: '-0.5px'
-                            }}>Alunos</h1>
-                            <p style={{ color: 'var(--text-secondary)', margin: '0.25rem 0 0 0', fontSize: '0.9rem' }}>Gerencie seus alunos e prescreva treinos</p>
-                        </div>
                         <button
                             className="btn-primary"
                             onClick={() => setIsAddModalOpen(true)}

@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { User, LogOut, Settings, ChevronDown } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Header = () => {
     const { profile, user, logout } = useAuthStore();
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef(null);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -42,6 +42,17 @@ const Header = () => {
     const displayName = profile?.name || user?.displayName || 'Usuário';
     const initals = getInitials(displayName);
 
+    // Get page title based on current path
+    const getPageTitle = () => {
+        const path = location.pathname;
+        if (path === '/' || path === '/dashboard') return 'Dashboard';
+        if (path === '/students') return 'Alunos';
+        if (path === '/workouts') return 'Meus Modelos 🏋️';
+        if (path === '/my-workout') return 'Meu Treino 🏋️';
+        if (path === '/admin') return 'Master Admin';
+        return '';
+    };
+
     return (
         <header style={{
             display: 'flex',
@@ -55,6 +66,23 @@ const Header = () => {
             borderBottom: '1px solid rgba(255,255,255,0.05)',
             marginBottom: '1rem'
         }}>
+            <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
+                <h1 style={{
+                    fontSize: '1.5rem',
+                    fontWeight: 800,
+                    margin: 0,
+                    letterSpacing: '-0.02em',
+                    background: 'linear-gradient(to right, #fff, rgba(255,255,255,0.7))',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.4rem'
+                }}>
+                    {getPageTitle()}
+                </h1>
+            </div>
+
             <div style={{ position: 'relative' }} ref={menuRef}>
                 <button
                     onClick={toggleMenu}
