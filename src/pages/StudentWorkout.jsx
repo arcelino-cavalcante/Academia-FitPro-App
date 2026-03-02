@@ -91,7 +91,7 @@ const StudentWorkout = () => {
     const currentDay = myWorkout.routine[selectedDayIndex];
 
     return (
-        <div className="animate-fade-in" style={{ paddingBottom: '7rem', paddingTop: 0 }}>
+        <div className="animate-fade-in">
             {/* Sticky Header - Removed titles as they are now in the global Header, keeping training state */}
             <div style={{
                 position: 'sticky',

@@ -63,7 +63,7 @@ const Workouts = () => {
     }
 
     return (
-        <div className="animate-fade-in workouts-page" style={{ paddingBottom: '8rem' }}>
+        <div className="animate-fade-in workouts-page">
             <header style={{
                 display: 'flex',
                 justifyContent: 'flex-end',

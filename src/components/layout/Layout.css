@@ -1,7 +1,8 @@
 /* Layout Overall Structure */
 .app-container {
     display: flex;
-    height: 100vh;
+    height: 100dvh;
+    width: 100dvw;
     overflow: hidden;
     background-color: var(--bg-color);
 }
@@ -9,9 +10,10 @@
 .main-content {
     flex: 1;
     overflow-y: auto;
-    padding: 0 1rem 100px 1rem;
-    /* Removed top padding so Header sticks to the absolute top edge */
-    /* Space for floating mobile nav */
+    overflow-x: hidden;
+    padding: 0 1rem calc(80px + env(safe-area-inset-bottom, 0px)) 1rem;
+    position: relative;
+    /* Space for floating mobile nav is included in the bottom padding */
 }
 
 /* Sidebar (Desktop) */

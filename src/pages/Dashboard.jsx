@@ -11,7 +11,7 @@ const Dashboard = () => {
     const workouts = useWorkoutStore((state) => state.workouts);
 
     return (
-        <div className="animate-fade-in" style={{ position: 'relative', minHeight: '100%', padding: '1rem' }}>
+        <div className="animate-fade-in" style={{ position: 'relative', minHeight: '100%' }}>
             {/* Liquid Background Layer */}
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, overflow: 'hidden', pointerEvents: 'none', zIndex: -1 }}>
                 <div style={{ position: 'absolute', borderRadius: '50%', filter: 'blur(80px)', background: 'var(--primary)', width: '400px', height: '400px', top: '-10%', left: '-5%', opacity: 0.15, animation: 'float 15s infinite alternate ease-in-out' }}></div>
