@@ -296,69 +296,115 @@ const WorkoutBuilder = ({
 
                         <div style={{ padding: '0.75rem' }}>
                             {day.exercises.map((ex, eIdx) => (
-                                <div key={ex.exId} className="glass-panel" style={{ padding: '1rem', background: 'rgba(255,255,255,0.015)', marginBottom: '1rem', border: ex.isAdvanced ? '1px solid var(--primary-glow)' : '1px solid rgba(255,255,255,0.06)' }}>
-                                    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'nowrap' }}>
-                                        <div style={{ flexShrink: 0 }}>
-                                            <AnimatedExercise images={ex.images} name={ex.name} url={ex.url} tipo={ex.tipo} size={85} />
+                                <div key={ex.exId} className="glass-panel" style={{
+                                    padding: '0.85rem',
+                                    background: 'rgba(255,255,255,0.015)',
+                                    marginBottom: '0.75rem',
+                                    border: ex.isAdvanced ? '1px solid rgba(74, 222, 128, 0.3)' : '1px solid rgba(255,255,255,0.05)',
+                                    borderRadius: '20px',
+                                    position: 'relative'
+                                }}>
+                                    <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'nowrap' }}>
+                                        <div style={{
+                                            flexShrink: 0,
+                                            borderRadius: '14px',
+                                            overflow: 'hidden',
+                                            border: '1px solid rgba(255,255,255,0.06)',
+                                            background: 'rgba(0,0,0,0.2)'
+                                        }}>
+                                            <AnimatedExercise images={ex.images} name={ex.name} url={ex.url} tipo={ex.tipo} size={70} />
                                         </div>
 
-                                        <div style={{ flex: 1, minWidth: 0 }}>
-                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
-                                                <div style={{ minWidth: 0 }}>
-                                                    <h4 style={{ fontSize: '1.05rem', margin: 0, fontWeight: 700, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{ex.name}</h4>
-                                                    <p style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: 700, margin: '0.15rem 0 0 0' }}>{ex.muscleGroup}</p>
+                                        <div style={{ flex: 1, minWidth: 0, paddingTop: '2px' }}>
+                                            <div style={{
+                                                display: 'flex',
+                                                justifyContent: 'space-between',
+                                                alignItems: 'flex-start',
+                                                marginBottom: '0.5rem'
+                                            }}>
+                                                <div style={{ minWidth: 0, paddingRight: '1rem' }}>
+                                                    <h4 style={{
+                                                        fontSize: '0.95rem',
+                                                        margin: 0,
+                                                        fontWeight: 800,
+                                                        whiteSpace: 'nowrap',
+                                                        overflow: 'hidden',
+                                                        textOverflow: 'ellipsis',
+                                                        color: '#fff'
+                                                    }}>{ex.name}</h4>
+                                                    <p style={{
+                                                        fontSize: '0.6rem',
+                                                        color: 'var(--primary)',
+                                                        textTransform: 'uppercase',
+                                                        fontWeight: 900,
+                                                        margin: '0.1rem 0 0 0',
+                                                        letterSpacing: '0.5px',
+                                                        opacity: 0.8
+                                                    }}>{ex.muscleGroup}</p>
                                                 </div>
-                                                <div style={{ display: 'flex', gap: '0.35rem' }}>
-                                                    <button onClick={() => handleRemoveExercise(dIdx, eIdx)} style={{ color: 'rgba(239, 68, 68, 0.3)', padding: '0.2rem' }}><Trash2 size={16} /></button>
-                                                </div>
+                                                <button
+                                                    onClick={() => handleRemoveExercise(dIdx, eIdx)}
+                                                    style={{
+                                                        color: 'rgba(239, 68, 68, 0.5)',
+                                                        padding: '0.4rem',
+                                                        marginTop: '-0.3rem',
+                                                        marginRight: '-0.3rem'
+                                                    }}
+                                                >
+                                                    <Trash2 size={16} />
+                                                </button>
                                             </div>
 
-                                            <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem' }}>
+                                            <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: '0.75rem' }}>
                                                 <button
                                                     onClick={() => handleToggleAdvanced(dIdx, eIdx)}
                                                     style={{
-                                                        padding: '0.35rem 0.7rem',
-                                                        fontSize: '0.6rem',
-                                                        borderRadius: '8px',
-                                                        background: ex.isAdvanced ? 'var(--primary)' : 'rgba(255,255,255,0.05)',
-                                                        color: ex.isAdvanced ? '#000' : 'var(--text-secondary)',
+                                                        padding: '0.3rem 0.6rem',
+                                                        fontSize: '0.55rem',
+                                                        borderRadius: '30px',
+                                                        background: ex.isAdvanced ? 'var(--primary)' : 'rgba(255,255,255,0.04)',
+                                                        color: ex.isAdvanced ? '#000' : 'rgba(255,255,255,0.5)',
                                                         border: '1px solid rgba(255,255,255,0.05)',
-                                                        fontWeight: 800,
+                                                        fontWeight: 900,
                                                         cursor: 'pointer',
                                                         display: 'flex',
                                                         alignItems: 'center',
-                                                        gap: '0.3rem'
+                                                        gap: '0.25rem',
+                                                        letterSpacing: '0.3px'
                                                     }}
                                                 >
-                                                    <Clock size={12} /> {ex.isAdvanced ? 'MODO AVANÇADO' : 'AJUSTE FINO'}
+                                                    <Settings size={10} /> {ex.isAdvanced ? 'SÉRIES DETALHADAS' : 'PADRÃO'}
                                                 </button>
                                             </div>
 
                                             {!ex.isAdvanced ? (
-                                                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                                                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                                                     <div>
-                                                        <label style={{ fontSize: '0.6rem', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.5px' }}>Séries</label>
-                                                        <div className="no-scrollbar" style={{ display: 'flex', gap: '0.4rem', flexWrap: 'nowrap', overflowX: 'auto', marginTop: '0.35rem', paddingBottom: '0.2rem' }}>
-                                                            {setsPresets.map(s => <button key={s} onClick={() => handleUpdateExerciseField(dIdx, eIdx, 'sets', s)} style={{ padding: '0.35rem 0.8rem', borderRadius: '10px', fontSize: '0.7rem', fontWeight: 800, background: ex.sets === s ? 'var(--primary)' : 'rgba(255,255,255,0.05)', color: ex.sets === s ? '#000' : '#888', border: '1px solid rgba(255,255,255,0.05)', cursor: 'pointer', transition: 'all 0.2s' }}>{s}</button>)}
+                                                        <label style={{ fontSize: '0.55rem', color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase', fontWeight: 900, letterSpacing: '0.8px' }}>Séries</label>
+                                                        <div className="no-scrollbar" style={{ display: 'flex', gap: '0.35rem', flexWrap: 'nowrap', overflowX: 'auto', marginTop: '0.25rem', paddingBottom: '0.1rem' }}>
+                                                            {setsPresets.map(s => <button key={s} onClick={() => handleUpdateExerciseField(dIdx, eIdx, 'sets', s)} style={{ padding: '0.3rem 0.75rem', borderRadius: '8px', fontSize: '0.65rem', fontWeight: 900, background: ex.sets === s ? 'var(--primary)' : 'rgba(255,255,255,0.04)', color: ex.sets === s ? '#000' : 'rgba(255,255,255,0.3)', border: '1px solid rgba(255,255,255,0.04)', cursor: 'pointer', transition: 'all 0.2s' }}>{s}</button>)}
                                                         </div>
                                                     </div>
                                                     <div>
-                                                        <label style={{ fontSize: '0.6rem', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.5px' }}>Repetições</label>
-                                                        <div className="no-scrollbar" style={{ display: 'flex', gap: '0.4rem', flexWrap: 'nowrap', overflowX: 'auto', marginTop: '0.35rem', paddingBottom: '0.2rem' }}>
-                                                            {repsPresets.map(r => <button key={r} onClick={() => handleUpdateExerciseField(dIdx, eIdx, 'reps', r)} style={{ padding: '0.35rem 0.8rem', borderRadius: '10px', fontSize: '0.7rem', fontWeight: 800, background: ex.reps === r ? 'var(--primary)' : 'rgba(255,255,255,0.05)', color: ex.reps === r ? '#000' : '#888', border: '1px solid rgba(255,255,255,0.05)', cursor: 'pointer', transition: 'all 0.2s', whiteSpace: 'nowrap' }}>{r}</button>)}
+                                                        <label style={{ fontSize: '0.55rem', color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase', fontWeight: 900, letterSpacing: '0.8px' }}>Repetições</label>
+                                                        <div className="no-scrollbar" style={{ display: 'flex', gap: '0.35rem', flexWrap: 'nowrap', overflowX: 'auto', marginTop: '0.25rem', paddingBottom: '0.1rem' }}>
+                                                            {repsPresets.map(r => <button key={r} onClick={() => handleUpdateExerciseField(dIdx, eIdx, 'reps', r)} style={{ padding: '0.3rem 0.75rem', borderRadius: '8px', fontSize: '0.65rem', fontWeight: 900, background: ex.reps === r ? 'var(--primary)' : 'rgba(255,255,255,0.04)', color: ex.reps === r ? '#000' : 'rgba(255,255,255,0.3)', border: '1px solid rgba(255,255,255,0.04)', cursor: 'pointer', transition: 'all 0.2s', whiteSpace: 'nowrap' }}>{r}</button>)}
                                                         </div>
                                                     </div>
-                                                    <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.25rem' }}>
-                                                        <select value={ex.method} onChange={e => handleUpdateExerciseField(dIdx, eIdx, 'method', e.target.value)} className="glass-panel" style={{ flex: 1, padding: '0.5rem', fontSize: '0.75rem', borderRadius: '10px', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.05)' }}>
+                                                    <div style={{ display: 'flex', gap: '0.4rem', marginTop: '0.1rem' }}>
+                                                        <select value={ex.method} onChange={e => handleUpdateExerciseField(dIdx, eIdx, 'method', e.target.value)} className="glass-panel" style={{ flex: 1, padding: '0.4rem', fontSize: '0.7rem', borderRadius: '10px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.05)', color: '#fff' }}>
                                                             {methods.map(m => <option key={m} value={m}>{m}</option>)}
                                                         </select>
-                                                        <input
-                                                            type="text"
-                                                            value={ex.rest}
-                                                            onChange={e => handleUpdateExerciseField(dIdx, eIdx, 'rest', e.target.value)}
-                                                            placeholder="Descanso"
-                                                            style={{ width: '80px', padding: '0.5rem', fontSize: '0.75rem', borderRadius: '10px', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.05)', color: '#fff' }}
-                                                        />
+                                                        <div style={{ position: 'relative', width: '90px' }}>
+                                                            <input
+                                                                type="text"
+                                                                value={ex.rest}
+                                                                onChange={e => handleUpdateExerciseField(dIdx, eIdx, 'rest', e.target.value)}
+                                                                placeholder="Descanso"
+                                                                style={{ width: '100%', padding: '0.4rem 0.4rem 0.4rem 1.8rem', fontSize: '0.7rem', borderRadius: '10px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.05)', color: '#fff' }}
+                                                            />
+                                                            <Clock size={12} style={{ position: 'absolute', left: '0.6rem', top: '50%', transform: 'translateY(-50%)', opacity: 0.4 }} />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             ) : (
