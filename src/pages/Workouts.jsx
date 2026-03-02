@@ -63,48 +63,78 @@ const Workouts = () => {
     }
 
     return (
-        <div className="animate-fade-in workouts-page">
-            <header className="page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div className="animate-fade-in workouts-page" style={{ paddingBottom: '8rem' }}>
+            <header style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'baseline',
+                marginBottom: '2.5rem',
+                flexWrap: 'wrap',
+                gap: '1rem'
+            }}>
                 <div>
-                    <h1>Biblioteca de Treinos</h1>
-                    <p>Crie modelos mestres para aplicar aos seus alunos</p>
+                    <h1 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.25rem' }}>Meus Modelos 🏋️</h1>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Sua biblioteca de prescrições mestres</p>
                 </div>
-                <button className="btn-primary" onClick={handleCreateNew}>
-                    <Plus size={20} /> Criar Novo Modelo
+                <button className="btn-primary" onClick={handleCreateNew} style={{ padding: '0.6rem 1.2rem', fontSize: '0.8rem', borderRadius: '14px' }}>
+                    <Plus size={18} /> Novo Modelo
                 </button>
             </header>
 
-            <div className="glass-panel" style={{ padding: '2rem' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>
-                    {templates.map(temp => (
-                        <div key={temp.id} className="glass-panel" style={{ padding: '1.5rem', border: '1px solid rgba(255,255,255,0.05)', transition: 'all 0.3s ease' }}>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
-                                <h3 style={{ fontSize: '1.25rem', margin: 0, color: 'var(--primary)' }}>{temp.name}</h3>
-                                <div style={{ display: 'flex', gap: '0.5rem' }}>
-                                    <button className="btn-icon" onClick={() => handleEditTemplate(temp)}>
-                                        <Edit2 size={18} />
-                                    </button>
-                                    <button className="btn-icon text-error" onClick={() => deleteTemplate(temp.id)}>
-                                        <Trash2 size={18} />
-                                    </button>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                {templates.map(temp => (
+                    <div
+                        key={temp.id}
+                        className="glass-panel hover-card"
+                        onClick={() => handleEditTemplate(temp)}
+                        style={{
+                            padding: '1.25rem',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            border: '1px solid rgba(255,255,255,0.05)',
+                            background: 'rgba(255,255,255,0.02)',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', overflow: 'hidden' }}>
+                            <div style={{
+                                width: '48px',
+                                height: '48px',
+                                borderRadius: '12px',
+                                background: 'rgba(74, 222, 128, 0.1)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexShrink: 0
+                            }}>
+                                <Dumbbell size={24} color="var(--primary)" />
+                            </div>
+
+                            <div style={{ overflow: 'hidden' }}>
+                                <h3 style={{ fontSize: '1.1rem', margin: 0, fontWeight: 700, whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>{temp.name}</h3>
+                                <div style={{ display: 'flex', gap: '0.4rem', marginTop: '0.35rem', alignItems: 'center' }}>
+                                    <span style={{ fontSize: '0.65rem', color: 'var(--primary)', fontWeight: 800, textTransform: 'uppercase' }}>{temp.level}</span>
+                                    <span style={{ width: '3px', height: '3px', borderRadius: '50%', background: 'rgba(255,255,255,0.2)' }}></span>
+                                    <span style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>{temp.routine.length} treinos • {temp.goal}</span>
                                 </div>
                             </div>
-                            <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
-                                <span className="badge">{temp.level}</span>
-                                <span className="badge">{temp.goal}</span>
-                            </div>
-                            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                                Contém {temp.routine.length} treinos ({temp.routine.map(r => r.id).join(', ')})
-                            </p>
                         </div>
-                    ))}
-                    {templates.length === 0 && (
-                        <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '3rem', opacity: 0.5 }}>
-                            <Dumbbell size={48} style={{ marginBottom: '1rem' }} />
-                            <p>Sua biblioteca está vazia. Crie seu primeiro modelo!</p>
+
+                        <div style={{ display: 'flex', gap: '0.5rem', marginLeft: '1rem' }}>
+                            <button className="btn-icon" style={{ width: '32px', height: '32px', color: 'rgba(255,255,255,0.3)' }} onClick={(e) => { e.stopPropagation(); deleteTemplate(temp.id); }}>
+                                <Trash2 size={16} />
+                            </button>
                         </div>
-                    )}
-                </div>
+                    </div>
+                ))}
+
+                {templates.length === 0 && (
+                    <div style={{ textAlign: 'center', padding: '5rem 2rem', opacity: 0.3 }}>
+                        <Dumbbell size={48} style={{ marginBottom: '1.5rem', margin: '0 auto' }} />
+                        <p style={{ fontSize: '0.9rem' }}>Nenhum modelo criado ainda.</p>
+                    </div>
+                )}
             </div>
         </div>
     );
