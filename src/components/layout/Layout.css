@@ -9,8 +9,8 @@
 .main-content {
     flex: 1;
     overflow-y: auto;
-    padding: 1rem;
-    padding-bottom: 100px;
+    padding: 0 1rem 100px 1rem;
+    /* Removed top padding so Header sticks to the absolute top edge */
     /* Space for floating mobile nav */
 }
 

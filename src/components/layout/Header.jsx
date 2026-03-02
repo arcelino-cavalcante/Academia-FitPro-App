@@ -58,7 +58,8 @@ const Header = () => {
         <header style={{
             display: 'flex',
             justifyContent: 'flex-end',
-            padding: '1rem 1.5rem',
+            padding: '1rem', /* Reduced padding slightly */
+            margin: '0 -1rem 1rem -1rem', /* Negative margin to pull it flush against the viewport sides */
             position: 'sticky',
             top: 0,
             zIndex: 100,
