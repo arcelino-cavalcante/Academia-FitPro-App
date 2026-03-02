@@ -512,10 +512,9 @@ const WorkoutBuilder = ({
                             <div className="no-scrollbar" style={{
                                 flex: 1,
                                 overflowY: 'auto',
-                                paddingBottom: '2.5rem',
-                                paddingRight: '4px'
+                                paddingBottom: '3.5rem'
                             }} onScroll={handleScroll}>
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
                                     {filteredExercises.slice(0, visibleCount).map(ex => (
                                         <div
                                             key={ex.id}
@@ -525,7 +524,7 @@ const WorkoutBuilder = ({
                                                 display: 'flex',
                                                 justifyContent: 'space-between',
                                                 alignItems: 'center',
-                                                padding: '0.6rem 0.75rem',
+                                                padding: '0.85rem 1rem',
                                                 cursor: 'pointer',
                                                 background: 'rgba(255,255,255,0.02)',
                                                 border: '1px solid rgba(255,255,255,0.04)',
