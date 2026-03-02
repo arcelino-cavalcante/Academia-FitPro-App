@@ -700,171 +700,176 @@ const WorkoutBuilder = ({
             {isExerciseModalOpen && (
                 <div className="modal-full-overlay">
                     <div className="modal-full-content">
-                        {/* Header Area */}
+                        {/* Sticky Top Section (Header, Search, Categories) */}
                         <div style={{
-                            padding: '1.5rem 1.25rem 1rem',
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            background: 'rgba(21, 24, 30, 0.8)',
-                            backdropFilter: 'blur(10px)',
-                            borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+                            flexShrink: 0,
                             position: 'sticky',
                             top: 0,
-                            zIndex: 10
+                            zIndex: 10,
+                            background: 'rgba(21, 24, 30, 0.95)',
+                            backdropFilter: 'blur(20px)',
+                            WebkitBackdropFilter: 'blur(20px)',
+                            borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
                         }}>
-                            <div>
-                                <h2 style={{ fontSize: '1.4rem', fontWeight: 900, margin: 0, letterSpacing: '-0.02em' }}>Escolha o Exercício</h2>
-                                <p style={{ fontSize: '0.75rem', color: 'var(--primary)', fontWeight: 700, margin: '0.1rem 0 0 0', textTransform: 'uppercase' }}>Biblioteca Elite FitPro</p>
-                            </div>
-                            <button
-                                className="btn-icon"
-                                style={{ background: 'rgba(255,255,255,0.05)', width: '36px', height: '36px', borderRadius: '12px' }}
-                                onClick={() => setIsExerciseModalOpen(false)}
-                            >
-                                <X size={20} />
-                            </button>
-                        </div>
-
-                        <div style={{ padding: '1rem 1.25rem', display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
-                            {/* Search Area */}
-                            <div className="search-input-wrapper" style={{ marginBottom: '1.25rem', flexShrink: 0 }}>
-                                <Search size={18} color={exerciseSearch ? "var(--primary)" : "rgba(255,255,255,0.2)"} />
-                                <input
-                                    type="text"
-                                    placeholder="Buscar na biblioteca..."
-                                    value={exerciseSearch}
-                                    onChange={e => setExerciseSearch(e.target.value)}
-                                    style={{ fontSize: '1rem' }}
-                                />
-                                {exerciseSearch && (
-                                    <button onClick={() => setExerciseSearch('')} className="search-clear-btn">
-                                        <X size={16} />
-                                    </button>
-                                )}
-                            </div>
-
-                            {/* Categories Filter */}
-                            <div className="no-scrollbar" style={{
+                            {/* Header Area */}
+                            <div style={{
+                                padding: '1.5rem 1.25rem 1rem',
                                 display: 'flex',
-                                gap: '0.6rem',
-                                overflowX: 'auto',
-                                paddingBottom: '1.25rem',
-                                flexShrink: 0
+                                justifyContent: 'space-between',
+                                alignItems: 'center'
                             }}>
-                                {categories.map(cat => (
-                                    <button
-                                        key={cat}
-                                        onClick={() => setSelectedCategory(cat)}
-                                        style={{
-                                            padding: '0.5rem 1.2rem',
-                                            borderRadius: '12px',
-                                            whiteSpace: 'nowrap',
-                                            fontSize: '0.7rem',
-                                            fontWeight: 800,
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.5px',
-                                            backgroundColor: selectedCategory === cat ? 'var(--primary)' : 'rgba(255,255,255,0.04)',
-                                            color: selectedCategory === cat ? '#000' : 'rgba(255,255,255,0.4)',
-                                            border: '1px solid rgba(255,255,255,0.05)',
-                                            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
-                                        }}
-                                    >
-                                        {cat}
-                                    </button>
-                                ))}
+                                <div>
+                                    <h2 style={{ fontSize: '1.4rem', fontWeight: 900, margin: 0, letterSpacing: '-0.02em' }}>Escolha o Exercício</h2>
+                                    <p style={{ fontSize: '0.75rem', color: 'var(--primary)', fontWeight: 700, margin: '0.1rem 0 0 0', textTransform: 'uppercase' }}>Biblioteca Elite FitPro</p>
+                                </div>
+                                <button
+                                    className="btn-icon"
+                                    style={{ background: 'rgba(255,255,255,0.05)', width: '36px', height: '36px', borderRadius: '12px' }}
+                                    onClick={() => setIsExerciseModalOpen(false)}
+                                >
+                                    <X size={20} />
+                                </button>
                             </div>
 
-                            {/* Exercises List */}
-                            <div className="no-scrollbar" style={{
-                                flex: 1,
-                                overflowY: 'auto',
-                                paddingBottom: '3.5rem'
-                            }} onScroll={handleScroll}>
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                                    {filteredExercises.slice(0, visibleCount).map(ex => (
-                                        <div
-                                            key={ex.id}
-                                            className="glass-panel hover-card"
-                                            onClick={() => handleAddExercise(ex)}
+                            <div style={{ padding: '0 1.25rem' }}>
+                                {/* Search Area */}
+                                <div className="search-input-wrapper" style={{ marginBottom: '1.25rem' }}>
+                                    <Search size={18} color={exerciseSearch ? "var(--primary)" : "rgba(255,255,255,0.2)"} />
+                                    <input
+                                        type="text"
+                                        placeholder="Buscar na biblioteca..."
+                                        value={exerciseSearch}
+                                        onChange={e => setExerciseSearch(e.target.value)}
+                                        style={{ fontSize: '1rem' }}
+                                    />
+                                    {exerciseSearch && (
+                                        <button onClick={() => setExerciseSearch('')} className="search-clear-btn">
+                                            <X size={16} />
+                                        </button>
+                                    )}
+                                </div>
+
+                                {/* Categories Filter */}
+                                <div className="no-scrollbar" style={{
+                                    display: 'flex',
+                                    gap: '0.6rem',
+                                    overflowX: 'auto',
+                                    paddingBottom: '1.25rem'
+                                }}>
+                                    {categories.map(cat => (
+                                        <button
+                                            key={cat}
+                                            onClick={() => setSelectedCategory(cat)}
                                             style={{
-                                                display: 'flex',
-                                                justifyContent: 'space-between',
-                                                alignItems: 'center',
-                                                padding: '0.85rem 1rem',
-                                                cursor: 'pointer',
-                                                background: 'rgba(255,255,255,0.02)',
-                                                border: '1px solid rgba(255,255,255,0.04)',
-                                                borderRadius: '16px',
-                                                transition: 'all 0.2s ease'
+                                                padding: '0.5rem 1.2rem',
+                                                borderRadius: '12px',
+                                                whiteSpace: 'nowrap',
+                                                fontSize: '0.7rem',
+                                                fontWeight: 800,
+                                                textTransform: 'uppercase',
+                                                letterSpacing: '0.5px',
+                                                backgroundColor: selectedCategory === cat ? 'var(--primary)' : 'rgba(255,255,255,0.04)',
+                                                color: selectedCategory === cat ? '#000' : 'rgba(255,255,255,0.4)',
+                                                border: '1px solid rgba(255,255,255,0.05)',
+                                                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
                                             }}
                                         >
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flex: 1, minWidth: 0 }}>
-                                                <div style={{
-                                                    borderRadius: '12px',
-                                                    overflow: 'hidden',
-                                                    border: '1px solid rgba(255,255,255,0.06)',
-                                                    flexShrink: 0,
-                                                    background: 'rgba(0,0,0,0.2)'
-                                                }}>
-                                                    <AnimatedExercise
-                                                        images={ex.images}
-                                                        name={ex.name}
-                                                        url={ex.url}
-                                                        tipo={ex.tipo}
-                                                        size={50}
-                                                    />
-                                                </div>
-                                                <div style={{ minWidth: 0 }}>
-                                                    <p style={{
-                                                        fontWeight: 800,
-                                                        margin: 0,
-                                                        fontSize: '0.9rem',
-                                                        color: 'var(--text-primary)',
-                                                        whiteSpace: 'nowrap',
-                                                        overflow: 'hidden',
-                                                        textOverflow: 'ellipsis'
-                                                    }}>
-                                                        {ex.name}
-                                                    </p>
-                                                    <span style={{
-                                                        fontSize: '0.65rem',
-                                                        color: 'var(--primary)',
-                                                        textTransform: 'uppercase',
-                                                        fontWeight: 900,
-                                                        letterSpacing: '0.3px',
-                                                        opacity: 0.8
-                                                    }}>
-                                                        {ex.muscleGroup}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div style={{
-                                                background: 'rgba(74, 222, 128, 0.12)',
-                                                width: '32px',
-                                                height: '32px',
-                                                borderRadius: '50%',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                flexShrink: 0,
-                                                marginLeft: '0.5rem',
-                                                border: '1px solid rgba(74, 222, 128, 0.2)'
-                                            }}>
-                                                <Plus size={18} color="var(--primary)" />
-                                            </div>
-                                        </div>
+                                            {cat}
+                                        </button>
                                     ))}
                                 </div>
-                                {isLoading && (
-                                    <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--primary)', fontSize: '0.8rem', fontWeight: 700 }}>Carregando biblioteca...</div>
-                                )}
                             </div>
+                        </div>
+
+                        {/* Exercises List */}
+                        <div className="no-scrollbar" style={{
+                            flex: 1,
+                            minHeight: 0,
+                            overflowY: 'auto',
+                            padding: '1rem 1.25rem 3.5rem 1.25rem'
+                        }} onScroll={handleScroll}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                                {filteredExercises.slice(0, visibleCount).map(ex => (
+                                    <div
+                                        key={ex.id}
+                                        className="glass-panel hover-card"
+                                        onClick={() => handleAddExercise(ex)}
+                                        style={{
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            alignItems: 'center',
+                                            padding: '0.85rem 1rem',
+                                            cursor: 'pointer',
+                                            background: 'rgba(255,255,255,0.02)',
+                                            border: '1px solid rgba(255,255,255,0.04)',
+                                            borderRadius: '16px',
+                                            transition: 'all 0.2s ease'
+                                        }}
+                                    >
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flex: 1, minWidth: 0 }}>
+                                            <div style={{
+                                                borderRadius: '12px',
+                                                overflow: 'hidden',
+                                                border: '1px solid rgba(255,255,255,0.06)',
+                                                flexShrink: 0,
+                                                background: 'rgba(0,0,0,0.2)'
+                                            }}>
+                                                <AnimatedExercise
+                                                    images={ex.images}
+                                                    name={ex.name}
+                                                    url={ex.url}
+                                                    tipo={ex.tipo}
+                                                    size={50}
+                                                />
+                                            </div>
+                                            <div style={{ minWidth: 0 }}>
+                                                <p style={{
+                                                    fontWeight: 800,
+                                                    margin: 0,
+                                                    fontSize: '0.9rem',
+                                                    color: 'var(--text-primary)',
+                                                    whiteSpace: 'nowrap',
+                                                    overflow: 'hidden',
+                                                    textOverflow: 'ellipsis'
+                                                }}>
+                                                    {ex.name}
+                                                </p>
+                                                <span style={{
+                                                    fontSize: '0.65rem',
+                                                    color: 'var(--primary)',
+                                                    textTransform: 'uppercase',
+                                                    fontWeight: 900,
+                                                    letterSpacing: '0.3px',
+                                                    opacity: 0.8
+                                                }}>
+                                                    {ex.muscleGroup}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div style={{
+                                            background: 'rgba(74, 222, 128, 0.12)',
+                                            width: '32px',
+                                            height: '32px',
+                                            borderRadius: '50%',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            flexShrink: 0,
+                                            marginLeft: '0.5rem',
+                                            border: '1px solid rgba(74, 222, 128, 0.2)'
+                                        }}>
+                                            <Plus size={18} color="var(--primary)" />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            {isLoading && (
+                                <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--primary)', fontSize: '0.8rem', fontWeight: 700 }}>Carregando biblioteca...</div>
+                            )}
                         </div>
                     </div>
                 </div>
             )}
-
         </div>
     );
 };
