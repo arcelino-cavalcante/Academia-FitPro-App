@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Plus, X, Trash2, Save, Clock } from 'lucide-react';
+import { Search, Plus, X, Trash2, Save, Clock, Settings } from 'lucide-react';
 import AnimatedExercise from '../ui/AnimatedExercise';
 import { useEffect } from 'react';
 
