@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 const Header = () => {
     const { profile, user, logout } = useAuthStore();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef(null);
     const navigate = useNavigate();
     const location = useLocation();
