@@ -434,10 +434,10 @@ const WorkoutBuilder = ({
                 <div className="modal-full-overlay">
                     <div className="modal-full-content">
                         {/* Header Area */}
-                        <div style={{ 
-                            padding: '1.5rem 1.25rem 1rem', 
-                            display: 'flex', 
-                            justifyContent: 'space-between', 
+                        <div style={{
+                            padding: '1.5rem 1.25rem 1rem',
+                            display: 'flex',
+                            justifyContent: 'space-between',
                             alignItems: 'center',
                             background: 'rgba(21, 24, 30, 0.8)',
                             backdropFilter: 'blur(10px)',
@@ -450,9 +450,9 @@ const WorkoutBuilder = ({
                                 <h2 style={{ fontSize: '1.4rem', fontWeight: 900, margin: 0, letterSpacing: '-0.02em' }}>Escolha o Exercício</h2>
                                 <p style={{ fontSize: '0.75rem', color: 'var(--primary)', fontWeight: 700, margin: '0.1rem 0 0 0', textTransform: 'uppercase' }}>Biblioteca Elite FitPro</p>
                             </div>
-                            <button 
-                                className="btn-icon" 
-                                style={{ background: 'rgba(255,255,255,0.05)', width: '36px', height: '36px', borderRadius: '12px' }} 
+                            <button
+                                className="btn-icon"
+                                style={{ background: 'rgba(255,255,255,0.05)', width: '36px', height: '36px', borderRadius: '12px' }}
                                 onClick={() => setIsExerciseModalOpen(false)}
                             >
                                 <X size={20} />
@@ -478,12 +478,12 @@ const WorkoutBuilder = ({
                             </div>
 
                             {/* Categories Filter */}
-                            <div className="no-scrollbar" style={{ 
-                                display: 'flex', 
-                                gap: '0.6rem', 
-                                overflowX: 'auto', 
-                                paddingBottom: '1.25rem', 
-                                flexShrink: 0 
+                            <div className="no-scrollbar" style={{
+                                display: 'flex',
+                                gap: '0.6rem',
+                                overflowX: 'auto',
+                                paddingBottom: '1.25rem',
+                                flexShrink: 0
                             }}>
                                 {categories.map(cat => (
                                     <button
@@ -509,12 +509,13 @@ const WorkoutBuilder = ({
                             </div>
 
                             {/* Exercises List */}
-                            <div className="no-scrollbar" style={{ 
-                                flex: 1, 
-                                overflowY: 'auto', 
-                                paddingBottom: '2rem'
+                            <div className="no-scrollbar" style={{
+                                flex: 1,
+                                overflowY: 'auto',
+                                paddingBottom: '2.5rem',
+                                paddingRight: '4px'
                             }} onScroll={handleScroll}>
-                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '0.75rem' }}>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
                                     {filteredExercises.slice(0, visibleCount).map(ex => (
                                         <div
                                             key={ex.id}
@@ -524,30 +525,73 @@ const WorkoutBuilder = ({
                                                 display: 'flex',
                                                 justifyContent: 'space-between',
                                                 alignItems: 'center',
-                                                padding: '0.85rem',
+                                                padding: '0.6rem 0.75rem',
                                                 cursor: 'pointer',
                                                 background: 'rgba(255,255,255,0.02)',
                                                 border: '1px solid rgba(255,255,255,0.04)',
-                                                borderRadius: '16px'
+                                                borderRadius: '16px',
+                                                transition: 'all 0.2s ease'
                                             }}
                                         >
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                                <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', flexShrink: 0 }}>
-                                                    <AnimatedExercise images={ex.images} name={ex.name} url={ex.url} tipo={ex.tipo} size={55} />
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flex: 1, minWidth: 0 }}>
+                                                <div style={{
+                                                    borderRadius: '12px',
+                                                    overflow: 'hidden',
+                                                    border: '1px solid rgba(255,255,255,0.06)',
+                                                    flexShrink: 0,
+                                                    background: 'rgba(0,0,0,0.2)'
+                                                }}>
+                                                    <AnimatedExercise
+                                                        images={ex.images}
+                                                        name={ex.name}
+                                                        url={ex.url}
+                                                        tipo={ex.tipo}
+                                                        size={50}
+                                                    />
                                                 </div>
-                                                <div style={{ minWidth: 0, overflow: 'hidden' }}>
-                                                    <p style={{ fontWeight: 700, margin: 0, fontSize: '0.9rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: '#fff' }}>{ex.name}</p>
-                                                    <span style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: 700 }}>{ex.muscleGroup}</span>
+                                                <div style={{ minWidth: 0 }}>
+                                                    <p style={{
+                                                        fontWeight: 800,
+                                                        margin: 0,
+                                                        fontSize: '0.9rem',
+                                                        color: 'var(--text-primary)',
+                                                        whiteSpace: 'nowrap',
+                                                        overflow: 'hidden',
+                                                        textOverflow: 'ellipsis'
+                                                    }}>
+                                                        {ex.name}
+                                                    </p>
+                                                    <span style={{
+                                                        fontSize: '0.65rem',
+                                                        color: 'var(--primary)',
+                                                        textTransform: 'uppercase',
+                                                        fontWeight: 900,
+                                                        letterSpacing: '0.3px',
+                                                        opacity: 0.8
+                                                    }}>
+                                                        {ex.muscleGroup}
+                                                    </span>
                                                 </div>
                                             </div>
-                                            <div style={{ background: 'var(--primary-glow)', width: '32px', height: '32px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                            <div style={{
+                                                background: 'rgba(74, 222, 128, 0.12)',
+                                                width: '32px',
+                                                height: '32px',
+                                                borderRadius: '50%',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                flexShrink: 0,
+                                                marginLeft: '0.5rem',
+                                                border: '1px solid rgba(74, 222, 128, 0.2)'
+                                            }}>
                                                 <Plus size={18} color="var(--primary)" />
                                             </div>
                                         </div>
                                     ))}
                                 </div>
                                 {isLoading && (
-                                    <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--primary)' }}>Carregando biblioteca...</div>
+                                    <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--primary)', fontSize: '0.8rem', fontWeight: 700 }}>Carregando biblioteca...</div>
                                 )}
                             </div>
                         </div>
