@@ -52,39 +52,36 @@
     gap: 0.5rem;
 }
 
-/* Bottom Navigation (Mobile) */
+/* Bottom Navigation (Mobile) - Premium iOS Floating Dock */
 .bottom-nav {
     position: fixed;
-    bottom: 1.25rem;
-    left: 1rem;
-    right: 1rem;
-    background: rgba(21, 24, 30, 0.85);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    padding: 0.5rem;
-    z-index: 1000;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 2.5rem);
+    max-width: 420px;
+    background: rgba(21, 24, 30, 0.7);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 0.5px solid rgba(255, 255, 255, 0.12);
+    border-radius: 30px;
+    padding: 0.5rem 0.6rem;
+    z-index: 2000;
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.3),
+        0 20px 40px rgba(0, 0, 0, 0.5),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
 }
 
 .bottom-nav-inner {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
+    gap: 0.5rem;
 }
 
-.mobile-sync-bar {
-    display: flex;
-    justify-content: center;
-    padding: 0.35rem;
-    margin-bottom: 0.35rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-/* Nav Items Shared */
+/* Nav Items Shared - Refined */
 .nav-item {
     display: flex;
     align-items: center;
@@ -92,48 +89,79 @@
     padding: 0.75rem 1rem;
     border-radius: var(--radius-md);
     color: var(--text-secondary);
-    transition: all var(--transition-fast);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     font-weight: 500;
 }
 
 .bottom-nav .nav-item {
     flex: 1;
     flex-direction: column;
-    gap: 0.2rem;
-    padding: 0.5rem;
-    border-radius: 12px;
+    gap: 0.25rem;
+    padding: 0.7rem 0.25rem;
+    border-radius: 20px;
     background: transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.bottom-nav .nav-item .nav-icon-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
 }
 
 .bottom-nav .nav-item span {
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     font-weight: 700;
+    letter-spacing: -0.2px;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
 }
 
 .bottom-nav .nav-item svg {
-    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.bottom-nav .nav-item.active svg {
-    transform: scale(1.1) translateY(-2px);
-}
-
-.nav-item:hover {
-    background-color: rgba(255, 255, 255, 0.03);
-    color: var(--text-primary);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    stroke-width: 2px;
+    color: rgba(255, 255, 255, 0.4);
 }
 
 .bottom-nav .nav-item.active {
+    background: transparent;
+}
+
+.bottom-nav .nav-item.active svg {
     color: var(--primary);
-    background-color: transparent;
+    transform: scale(1.15) translateY(-2px);
+    filter: drop-shadow(0 0 8px var(--primary-glow));
 }
 
 .bottom-nav .nav-item.active span {
     color: var(--primary);
     opacity: 1;
+    transform: translateY(-1px);
 }
 
-.nav-item.active {
+/* Indicator for active item (Modern iOS touch) */
+.bottom-nav .nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.nav-item:hover {
+    color: var(--text-primary);
+}
+
+.nav-item.active:not(.bottom-nav .nav-item) {
     color: var(--primary);
     background-color: var(--primary-glow);
 }

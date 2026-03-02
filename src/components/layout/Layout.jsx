@@ -86,9 +86,6 @@ const Layout = ({ children }) => {
 
             {/* Bottom Navigation for Mobile */}
             <nav className="bottom-nav">
-                <div className="mobile-sync-bar">
-                    <SyncIndicator sm />
-                </div>
                 <div className="bottom-nav-inner">
                     {filteredNavItems.map((item) => (
                         <NavLink
@@ -96,7 +93,9 @@ const Layout = ({ children }) => {
                             to={item.path}
                             className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}
                         >
-                            {item.icon}
+                            <div className="nav-icon-wrapper">
+                                {item.icon}
+                            </div>
                             <span>{item.name}</span>
                         </NavLink>
                     ))}
