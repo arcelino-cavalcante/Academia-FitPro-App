@@ -528,7 +528,7 @@ const Students = () => {
                 </div>
             ) : (
                 <>
-                    <header className="page-header" style={{
+                    <header style={{
                         display: 'flex',
                         justifyContent: 'flex-end',
                         alignItems: 'center',
