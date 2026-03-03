@@ -705,10 +705,8 @@ const WorkoutBuilder = ({
                             flexShrink: 0,
                             position: 'sticky',
                             top: 0,
-                            zIndex: 10,
-                            background: 'rgba(21, 24, 30, 0.95)',
-                            backdropFilter: 'blur(20px)',
-                            WebkitBackdropFilter: 'blur(20px)',
+                            zIndex: 200, /* Higher than global Header's 100 */
+                            background: '#0a0d14', /* Opaque background to hide global header */
                             borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
                         }}>
                             {/* Header Area */}
