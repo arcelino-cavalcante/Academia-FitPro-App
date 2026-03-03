@@ -713,7 +713,7 @@ const WorkoutBuilder = ({
                         }}>
                             {/* Header Area */}
                             <div style={{
-                                padding: '1.5rem 1.25rem 1rem',
+                                padding: 'calc(1.5rem + env(safe-area-inset-top, 0px)) 1.25rem 1rem',
                                 display: 'flex',
                                 justifyContent: 'space-between',
                                 alignItems: 'center'
