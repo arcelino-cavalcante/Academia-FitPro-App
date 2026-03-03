@@ -532,22 +532,20 @@ const Students = () => {
                         display: 'flex',
                         justifyContent: 'flex-end',
                         alignItems: 'center',
-                        marginBottom: '2rem',
+                        marginBottom: '1.5rem',
                     }}>
                         <button
                             className="btn-primary"
                             onClick={() => setIsAddModalOpen(true)}
                             style={{
-                                padding: '0.75rem 1.25rem',
-                                borderRadius: '12px',
-                                fontSize: '0.9rem',
-                                fontWeight: 800,
-                                boxShadow: '0 4px 15px rgba(74, 222, 128, 0.3)',
+                                padding: '0.6rem 1.2rem',
+                                fontSize: '0.8rem',
+                                borderRadius: '14px',
                                 letterSpacing: '0.5px',
                                 flexShrink: 0
                             }}
                         >
-                            <Plus size={18} /> NOVO
+                            <Plus size={18} /> Novo Aluno
                         </button>
                     </header>
 
