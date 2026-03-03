@@ -185,19 +185,17 @@ const WorkoutBuilder = ({
                 gap: '0.75rem',
                 position: 'sticky',
                 top: 0,
-                background: 'rgba(5, 7, 12, 0.8)',
-                backdropFilter: 'blur(16px)',
-                WebkitBackdropFilter: 'blur(16px)',
+                background: 'var(--bg-surface)',
                 zIndex: 50,
                 padding: '1rem',
                 margin: '-1rem -1rem 1.5rem -1rem', /* Pull to edges if parent has padding */
-                borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.5)'
+                borderBottom: '1px solid var(--border-color)',
+                boxShadow: 'var(--shadow-sm)'
             }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', flex: 1, minWidth: 0 }}>
                     <button
                         className="btn-icon"
-                        style={{ width: '36px', height: '36px', background: 'rgba(255,255,255,0.05)', borderRadius: '12px', flexShrink: 0 }}
+                        style={{ width: '36px', height: '36px', background: 'var(--border-color)', borderRadius: '12px', flexShrink: 0 }}
                         onClick={onCancel}
                     >
                         <X size={18} />
@@ -210,11 +208,11 @@ const WorkoutBuilder = ({
                         style={{
                             background: 'transparent',
                             border: 'none',
-                            color: '#fff',
+                            color: 'var(--text-primary)',
                             fontSize: '1.2rem',
                             fontWeight: 800,
                             outline: 'none',
-                            borderBottom: '1px dashed rgba(255,255,255,0.2)',
+                            borderBottom: '1px dashed var(--border-color)',
                             width: '100%',
                             minWidth: 0,
                             padding: '0.2rem 0'
@@ -240,7 +238,7 @@ const WorkoutBuilder = ({
             </div>
 
             {/* Metadata Row - Cleaner Selects */}
-            <div className="glass-panel" style={{ padding: '1rem', marginBottom: '1.5rem', background: 'rgba(255,255,255,0.01)', border: '1px solid rgba(255,255,255,0.05)' }}>
+            <div className="glass-panel" style={{ padding: '1rem', marginBottom: '1.5rem', background: 'var(--border-color)', border: '1px solid var(--border-color)' }}>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
                     <div>
                         <label style={{ fontSize: '0.6rem', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.5px', display: 'block', marginBottom: '0.4rem' }}>Público Alvo</label>
@@ -248,7 +246,7 @@ const WorkoutBuilder = ({
                             value={metadata.level}
                             onChange={e => setMetadata({ ...metadata, level: e.target.value })}
                             className="glass-panel"
-                            style={{ width: '100%', padding: '0.5rem', fontSize: '0.8rem', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '10px' }}
+                            style={{ width: '100%', padding: '0.5rem', fontSize: '0.8rem', background: 'var(--bg-surface)', border: '1px solid var(--border-color)', borderRadius: '10px' }}
                         >
                             <option value="Iniciante">Iniciante</option>
                             <option value="Intermediário">Intermediário</option>
@@ -262,7 +260,7 @@ const WorkoutBuilder = ({
                             value={metadata.goal}
                             onChange={e => setMetadata({ ...metadata, goal: e.target.value })}
                             className="glass-panel"
-                            style={{ width: '100%', padding: '0.5rem', fontSize: '0.8rem', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '10px' }}
+                            style={{ width: '100%', padding: '0.5rem', fontSize: '0.8rem', background: 'var(--bg-surface)', border: '1px solid var(--border-color)', borderRadius: '10px' }}
                         >
                             <option value="Hipertrofia">Hipertrofia</option>
                             <option value="Queima de Gordura">Queima de Gordura</option>
@@ -277,8 +275,8 @@ const WorkoutBuilder = ({
             {/* Routine Builder */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 {routine.map((day, dIdx) => (
-                    <div key={dIdx} className="glass-panel" style={{ border: '1px solid rgba(255,255,255,0.1)', overflow: 'hidden' }}>
-                        <div style={{ padding: '1.25rem', background: 'rgba(255,255,255,0.03)', borderBottom: '1px solid rgba(255,255,255,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div key={dIdx} className="glass-panel" style={{ border: '1px solid var(--border-color)', overflow: 'hidden' }}>
+                        <div style={{ padding: '1.25rem', background: 'var(--border-color)', borderBottom: '1px solid var(--border-color)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                                 <div style={{
                                     background: 'var(--primary)',
@@ -298,7 +296,7 @@ const WorkoutBuilder = ({
                                     type="text"
                                     value={day.dayName}
                                     onChange={e => handleUpdateDayName(dIdx, e.target.value)}
-                                    style={{ background: 'transparent', border: 'none', color: '#fff', fontSize: '1.1rem', fontWeight: 700, outline: 'none' }}
+                                    style={{ background: 'transparent', border: 'none', color: 'var(--text-primary)', fontSize: '1.1rem', fontWeight: 700, outline: 'none' }}
                                 />
                             </div>
                             <button className="btn-secondary" style={{ fontSize: '0.75rem', padding: '0.4rem 0.8rem', borderRadius: '10px', background: 'rgba(74, 222, 128, 0.1)', color: 'var(--primary)', border: 'none' }} onClick={() => handleOpenExerciseModal(dIdx)}>
@@ -310,9 +308,9 @@ const WorkoutBuilder = ({
                             {day.exercises.map((ex, eIdx) => (
                                 <div key={ex.exId} className="glass-panel" style={{
                                     padding: '1.25rem',
-                                    background: 'rgba(255,255,255,0.02)',
+                                    background: 'var(--border-color)',
                                     marginBottom: '1rem',
-                                    border: ex.isAdvanced ? '1px solid rgba(74, 222, 128, 0.4)' : '1px solid rgba(255,255,255,0.08)',
+                                    border: ex.isAdvanced ? '1px solid rgba(74, 222, 128, 0.4)' : '1px solid var(--border-color)',
                                     borderRadius: '20px',
                                     position: 'relative',
                                     boxShadow: ex.isAdvanced ? '0 4px 20px rgba(74, 222, 128, 0.05)' : 'none',
@@ -325,14 +323,14 @@ const WorkoutBuilder = ({
                                             flexShrink: 0,
                                             borderRadius: '16px',
                                             overflow: 'hidden',
-                                            border: '1px solid rgba(255,255,255,0.1)',
-                                            background: 'rgba(0,0,0,0.4)',
+                                            border: '1px solid var(--border-color)',
+                                            background: 'var(--bg-surface)',
                                             width: '80px',
                                             height: '80px',
                                             display: 'flex',
                                             alignItems: 'center',
                                             justifyContent: 'center',
-                                            boxShadow: 'inset 0 0 10px rgba(255,255,255,0.05)'
+                                            boxShadow: 'inset 0 0 10px var(--border-color)'
                                         }}>
                                             <AnimatedExercise images={ex.images} name={ex.name} url={ex.url} tipo={ex.tipo} size={80} />
                                         </div>
@@ -386,9 +384,9 @@ const WorkoutBuilder = ({
                                                         padding: '0.6rem 0.75rem',
                                                         fontSize: '0.65rem',
                                                         borderRadius: '12px',
-                                                        background: ex.isAdvanced ? 'var(--primary)' : 'rgba(255,255,255,0.03)',
+                                                        background: ex.isAdvanced ? 'var(--primary)' : 'var(--border-color)',
                                                         color: ex.isAdvanced ? '#000' : 'var(--text-secondary)',
-                                                        border: ex.isAdvanced ? 'none' : '1px dashed rgba(255,255,255,0.15)',
+                                                        border: ex.isAdvanced ? 'none' : '1px dashed var(--border-color)',
                                                         fontWeight: 800,
                                                         cursor: 'pointer',
                                                         display: 'flex',
@@ -397,7 +395,7 @@ const WorkoutBuilder = ({
                                                         gap: '0.4rem',
                                                         letterSpacing: '0.5px',
                                                         transition: 'all 0.2s ease',
-                                                        boxShadow: ex.isAdvanced ? '0 0 10px rgba(0, 123, 255, 0.3)' : 'none'
+                                                        boxShadow: ex.isAdvanced ? '0 0 10px transparent' : 'none'
                                                     }}
                                                 >
                                                     <Settings size={14} /> {ex.isAdvanced ? 'CONFIGURAÇÃO AVANÇADA' : 'CONFIGURAÇÃO PADRÃO'}
@@ -408,10 +406,10 @@ const WorkoutBuilder = ({
 
                                     {/* Body: Configuration Area (Full Width) */}
                                     <div style={{
-                                        background: 'rgba(0,0,0,0.15)',
+                                        background: 'var(--bg-surface)',
                                         borderRadius: '16px',
                                         padding: '1rem',
-                                        border: '1px solid rgba(255,255,255,0.03)'
+                                        border: '1px solid var(--border-color)'
                                     }}>
                                         {!ex.isAdvanced ? (
                                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
@@ -426,12 +424,12 @@ const WorkoutBuilder = ({
                                                                     borderRadius: '10px',
                                                                     fontSize: '0.8rem',
                                                                     fontWeight: 800,
-                                                                    background: ex.sets === s ? 'var(--primary)' : 'rgba(255,255,255,0.03)',
+                                                                    background: ex.sets === s ? 'var(--primary)' : 'var(--border-color)',
                                                                     color: ex.sets === s ? '#000' : 'var(--text-secondary)',
-                                                                    border: ex.sets === s ? '1px solid var(--primary-hover)' : '1px solid rgba(255,255,255,0.08)',
+                                                                    border: ex.sets === s ? '1px solid var(--primary-hover)' : '1px solid var(--border-color)',
                                                                     cursor: 'pointer',
                                                                     transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
-                                                                    boxShadow: ex.sets === s ? '0 2px 10px rgba(0, 123, 255, 0.2)' : 'none',
+                                                                    boxShadow: ex.sets === s ? '0 2px 10px transparent' : 'none',
                                                                     flexShrink: 0
                                                                 }}>
                                                                 {s}
@@ -450,13 +448,13 @@ const WorkoutBuilder = ({
                                                                     borderRadius: '10px',
                                                                     fontSize: '0.8rem',
                                                                     fontWeight: 800,
-                                                                    background: ex.reps === r ? 'var(--primary)' : 'rgba(255,255,255,0.03)',
+                                                                    background: ex.reps === r ? 'var(--primary)' : 'var(--border-color)',
                                                                     color: ex.reps === r ? '#000' : 'var(--text-secondary)',
-                                                                    border: ex.reps === r ? '1px solid var(--primary-hover)' : '1px solid rgba(255,255,255,0.08)',
+                                                                    border: ex.reps === r ? '1px solid var(--primary-hover)' : '1px solid var(--border-color)',
                                                                     cursor: 'pointer',
                                                                     transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                                                                     whiteSpace: 'nowrap',
-                                                                    boxShadow: ex.reps === r ? '0 2px 10px rgba(0, 123, 255, 0.2)' : 'none',
+                                                                    boxShadow: ex.reps === r ? '0 2px 10px transparent' : 'none',
                                                                     flexShrink: 0
                                                                 }}>
                                                                 {r}
@@ -477,8 +475,8 @@ const WorkoutBuilder = ({
                                                                 fontSize: '0.8rem',
                                                                 fontWeight: 600,
                                                                 borderRadius: '12px',
-                                                                background: 'rgba(255,255,255,0.05)',
-                                                                border: '1px solid rgba(255,255,255,0.1)',
+                                                                background: 'var(--border-color)',
+                                                                border: '1px solid var(--border-color)',
                                                                 color: 'var(--text-primary)',
                                                                 appearance: 'none',
                                                                 outline: 'none'
@@ -501,8 +499,8 @@ const WorkoutBuilder = ({
                                                                     fontSize: '0.8rem',
                                                                     fontWeight: 600,
                                                                     borderRadius: '12px',
-                                                                    background: 'rgba(255,255,255,0.05)',
-                                                                    border: '1px solid rgba(255,255,255,0.1)',
+                                                                    background: 'var(--border-color)',
+                                                                    border: '1px solid var(--border-color)',
                                                                     color: 'var(--text-primary)',
                                                                     outline: 'none'
                                                                 }}
@@ -517,8 +515,8 @@ const WorkoutBuilder = ({
                                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                                                     {ex.detailedSets?.map((set, sIdx) => (
                                                         <div key={sIdx} className="detailed-set-row" style={{
-                                                            background: 'rgba(0,0,0,0.2)',
-                                                            border: '1px solid rgba(255,255,255,0.05)',
+                                                            background: 'var(--bg-surface)',
+                                                            border: '1px solid var(--border-color)',
                                                             borderRadius: '16px',
                                                             padding: '1rem',
                                                             margin: 0,
@@ -555,11 +553,11 @@ const WorkoutBuilder = ({
                                                                             placeholder="ex: 12-15"
                                                                             className="glass-panel"
                                                                             style={{
-                                                                                background: 'rgba(255,255,255,0.03)',
-                                                                                border: '1px solid rgba(255,255,255,0.08)',
+                                                                                background: 'var(--border-color)',
+                                                                                border: '1px solid var(--border-color)',
                                                                                 padding: '0.75rem',
                                                                                 borderRadius: '10px',
-                                                                                color: '#fff',
+                                                                                color: 'var(--text-primary)',
                                                                                 fontSize: '0.85rem',
                                                                                 width: '100%',
                                                                                 outline: 'none',
@@ -569,7 +567,7 @@ const WorkoutBuilder = ({
                                                                                 boxSizing: 'border-box'
                                                                             }}
                                                                             onFocus={(e) => { e.currentTarget.style.border = '1px solid var(--primary)'; e.currentTarget.style.boxShadow = '0 0 0 2px rgba(74, 222, 128, 0.1)'; }}
-                                                                            onBlur={(e) => { e.currentTarget.style.border = '1px solid rgba(255,255,255,0.08)'; e.currentTarget.style.boxShadow = 'none'; }}
+                                                                            onBlur={(e) => { e.currentTarget.style.border = '1px solid var(--border-color)'; e.currentTarget.style.boxShadow = 'none'; }}
                                                                         />
                                                                     </div>
 
@@ -585,7 +583,7 @@ const WorkoutBuilder = ({
                                                                                         set.intensity === 'Alta' ? 'intensity-high' : 'intensity-max'
                                                                                 }`}
                                                                             style={{
-                                                                                border: '1px solid rgba(255,255,255,0.05)',
+                                                                                border: '1px solid var(--border-color)',
                                                                                 outline: 'none',
                                                                                 cursor: 'pointer',
                                                                                 borderRadius: '10px',
@@ -619,11 +617,11 @@ const WorkoutBuilder = ({
                                                                             onChange={e => handleUpdateDetailedSet(dIdx, eIdx, sIdx, 'method', e.target.value)}
                                                                             className="glass-panel"
                                                                             style={{
-                                                                                background: 'rgba(255,255,255,0.03)',
-                                                                                border: '1px solid rgba(255,255,255,0.08)',
+                                                                                background: 'var(--border-color)',
+                                                                                border: '1px solid var(--border-color)',
                                                                                 padding: '0.75rem',
                                                                                 borderRadius: '10px',
-                                                                                color: '#fff',
+                                                                                color: 'var(--text-primary)',
                                                                                 fontSize: '0.8rem',
                                                                                 width: '100%',
                                                                                 outline: 'none',
@@ -633,7 +631,7 @@ const WorkoutBuilder = ({
                                                                                 boxSizing: 'border-box'
                                                                             }}
                                                                             onFocus={(e) => { e.currentTarget.style.border = '1px solid var(--primary)'; e.currentTarget.style.boxShadow = '0 0 0 2px rgba(74, 222, 128, 0.1)'; }}
-                                                                            onBlur={(e) => { e.currentTarget.style.border = '1px solid rgba(255,255,255,0.08)'; e.currentTarget.style.boxShadow = 'none'; }}
+                                                                            onBlur={(e) => { e.currentTarget.style.border = '1px solid var(--border-color)'; e.currentTarget.style.boxShadow = 'none'; }}
                                                                         >
                                                                             {methods.map(m => <option key={m} value={m} style={{ background: 'var(--bg-color)' }}>{m}</option>)}
                                                                         </select>
@@ -650,11 +648,11 @@ const WorkoutBuilder = ({
                                                                                 placeholder="ex: 60s"
                                                                                 className="glass-panel"
                                                                                 style={{
-                                                                                    background: 'rgba(255,255,255,0.03)',
-                                                                                    border: '1px solid rgba(255,255,255,0.08)',
+                                                                                    background: 'var(--border-color)',
+                                                                                    border: '1px solid var(--border-color)',
                                                                                     padding: '0.75rem 0.75rem 0.75rem 2rem',
                                                                                     borderRadius: '10px',
-                                                                                    color: '#fff',
+                                                                                    color: 'var(--text-primary)',
                                                                                     fontSize: '0.85rem',
                                                                                     width: '100%',
                                                                                     outline: 'none',
@@ -663,9 +661,9 @@ const WorkoutBuilder = ({
                                                                                     boxSizing: 'border-box'
                                                                                 }}
                                                                                 onFocus={(e) => { e.currentTarget.style.border = '1px solid var(--primary)'; e.currentTarget.style.boxShadow = '0 0 0 2px rgba(74, 222, 128, 0.1)'; }}
-                                                                                onBlur={(e) => { e.currentTarget.style.border = '1px solid rgba(255,255,255,0.08)'; e.currentTarget.style.boxShadow = 'none'; }}
+                                                                                onBlur={(e) => { e.currentTarget.style.border = '1px solid var(--border-color)'; e.currentTarget.style.boxShadow = 'none'; }}
                                                                             />
-                                                                            <Clock size={14} style={{ position: 'absolute', left: '0.6rem', top: '50%', transform: 'translateY(-50%)', opacity: 0.5, color: '#fff' }} />
+                                                                            <Clock size={14} style={{ position: 'absolute', left: '0.6rem', top: '50%', transform: 'translateY(-50%)', opacity: 0.5, color: 'var(--text-primary)' }} />
                                                                         </div>
                                                                     </div>
 
@@ -685,9 +683,9 @@ const WorkoutBuilder = ({
                 ))}
                 <button className="btn-secondary" onClick={handleAddDay} style={{
                     padding: '1rem',
-                    border: '1px dashed rgba(255,255,255,0.15)',
+                    border: '1px dashed var(--border-color)',
                     justifyContent: 'center',
-                    background: 'rgba(255,255,255,0.02)',
+                    background: 'var(--border-color)',
                     borderRadius: '16px',
                     fontSize: '0.85rem',
                     color: 'var(--text-secondary)'
@@ -722,7 +720,7 @@ const WorkoutBuilder = ({
                                 </div>
                                 <button
                                     className="btn-icon"
-                                    style={{ background: 'rgba(255,255,255,0.05)', width: '36px', height: '36px', borderRadius: '12px' }}
+                                    style={{ background: 'var(--border-color)', width: '36px', height: '36px', borderRadius: '12px' }}
                                     onClick={() => setIsExerciseModalOpen(false)}
                                 >
                                     <X size={20} />
@@ -732,7 +730,7 @@ const WorkoutBuilder = ({
                             <div style={{ padding: '0 1.25rem' }}>
                                 {/* Search Area */}
                                 <div className="search-input-wrapper" style={{ marginBottom: '1.25rem' }}>
-                                    <Search size={18} color={exerciseSearch ? "var(--primary)" : "rgba(255,255,255,0.2)"} />
+                                    <Search size={18} color={exerciseSearch ? "var(--primary)" : "var(--border-color)"} />
                                     <input
                                         type="text"
                                         placeholder="Buscar na biblioteca..."
@@ -766,9 +764,9 @@ const WorkoutBuilder = ({
                                                 fontWeight: 800,
                                                 textTransform: 'uppercase',
                                                 letterSpacing: '0.5px',
-                                                backgroundColor: selectedCategory === cat ? 'var(--primary)' : 'rgba(255,255,255,0.04)',
-                                                color: selectedCategory === cat ? '#000' : 'rgba(255,255,255,0.4)',
-                                                border: '1px solid rgba(255,255,255,0.05)',
+                                                backgroundColor: selectedCategory === cat ? 'var(--primary)' : 'var(--border-color)',
+                                                color: selectedCategory === cat ? '#000' : 'var(--border-color)',
+                                                border: '1px solid var(--border-color)',
                                                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
                                             }}
                                         >
@@ -798,8 +796,8 @@ const WorkoutBuilder = ({
                                             alignItems: 'center',
                                             padding: '0.85rem 1rem',
                                             cursor: 'pointer',
-                                            background: 'rgba(255,255,255,0.02)',
-                                            border: '1px solid rgba(255,255,255,0.04)',
+                                            background: 'var(--border-color)',
+                                            border: '1px solid var(--border-color)',
                                             borderRadius: '16px',
                                             transition: 'all 0.2s ease'
                                         }}
@@ -808,9 +806,9 @@ const WorkoutBuilder = ({
                                             <div style={{
                                                 borderRadius: '12px',
                                                 overflow: 'hidden',
-                                                border: '1px solid rgba(255,255,255,0.06)',
+                                                border: '1px solid var(--border-color)',
                                                 flexShrink: 0,
-                                                background: 'rgba(0,0,0,0.2)'
+                                                background: 'var(--bg-surface)'
                                             }}>
                                                 <AnimatedExercise
                                                     images={ex.images}

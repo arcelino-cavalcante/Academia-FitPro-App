@@ -109,7 +109,7 @@ const AdminDashboard = () => {
                         </thead>
                         <tbody>
                             {trainers.map(trainer => (
-                                <tr key={trainer.uid} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                                <tr key={trainer.uid} style={{ borderBottom: '1px solid var(--border-color)' }}>
                                     <td style={{ padding: '1rem', fontWeight: 500 }}>{trainer.name}</td>
                                     <td style={{ padding: '1rem' }}>{trainer.email}</td>
                                     <td style={{ padding: '1rem', textAlign: 'center' }}>

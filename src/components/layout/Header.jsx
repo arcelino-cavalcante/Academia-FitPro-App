@@ -64,11 +64,9 @@ const Header = () => {
             position: 'sticky',
             top: 0,
             zIndex: 100,
-            background: 'rgba(5, 10, 20, 0.85)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-            borderBottom: '1px solid rgba(255,255,255,0.05)',
-            boxShadow: '0 4px 30px rgba(0,0,0,0.5)'
+            background: 'var(--bg-surface)',
+            borderBottom: '1px solid var(--border-color)',
+            boxShadow: 'var(--shadow-sm)'
         }}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
                 <h1 style={{
@@ -76,9 +74,7 @@ const Header = () => {
                     fontWeight: 800,
                     margin: 0,
                     letterSpacing: '-0.02em',
-                    background: 'linear-gradient(to right, #fff, rgba(255,255,255,0.7))',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
+                    color: 'var(--text-primary)',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.4rem'
@@ -94,15 +90,15 @@ const Header = () => {
                         display: 'flex',
                         alignItems: 'center',
                         gap: '0.75rem',
-                        background: 'rgba(255,255,255,0.03)',
-                        border: '1px solid rgba(255,255,255,0.08)',
+                        background: 'var(--border-color)',
+                        border: '1px solid var(--border-color)',
                         padding: '0.4rem 0.8rem 0.4rem 0.4rem',
                         borderRadius: '30px',
                         cursor: 'pointer',
                         transition: 'var(--transition-fast)'
                     }}
-                    onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.08)'}
-                    onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.03)'}
+                    onMouseOver={(e) => e.currentTarget.style.background = 'var(--border-color)'}
+                    onMouseOut={(e) => e.currentTarget.style.background = 'var(--border-color)'}
                 >
                     <div style={{
                         width: '36px',
@@ -112,16 +108,16 @@ const Header = () => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        color: '#fff',
+                        color: 'var(--text-primary)',
                         fontWeight: 800,
                         fontSize: '0.9rem',
-                        boxShadow: '0 2px 10px rgba(0,0,0,0.2)'
+                        boxShadow: 'var(--shadow-sm)'
                     }}>
                         {initals}
                     </div>
 
                     <div style={{ display: 'none', flexDirection: 'column', alignItems: 'flex-start' }} className="desktop-only-flex">
-                        <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#fff' }}>{displayName.split(' ')[0]}</span>
+                        <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)' }}>{displayName.split(' ')[0]}</span>
                         <span style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                             {profile?.role === 'STUDENT' ? 'ALUNO' : profile?.role === 'TRAINER' ? 'TREINADOR' : 'MASTER'}
                         </span>
@@ -138,14 +134,14 @@ const Header = () => {
                         right: 0,
                         width: '220px',
                         background: 'var(--bg-color)',
-                        border: '1px solid rgba(255,255,255,0.1)',
+                        border: '1px solid var(--border-color)',
                         borderRadius: '16px',
-                        boxShadow: '0 10px 40px rgba(0,0,0,0.5)',
+                        boxShadow: 'var(--shadow-sm)',
                         overflow: 'hidden',
                         animation: 'slideUp 0.2s ease-out'
                     }}>
-                        <div style={{ padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                            <p style={{ fontWeight: 700, margin: 0, color: '#fff', fontSize: '0.95rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{displayName}</p>
+                        <div style={{ padding: '1rem', borderBottom: '1px solid var(--border-color)' }}>
+                            <p style={{ fontWeight: 700, margin: 0, color: 'var(--text-primary)', fontSize: '0.95rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{displayName}</p>
                             <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: 0, marginTop: '0.2rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{user?.email}</p>
                         </div>
 

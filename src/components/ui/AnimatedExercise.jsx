@@ -53,9 +53,9 @@ const AnimatedExercise = ({ images, name, size = 60, url, tipo }) => {
             maxHeight: '100%',
             objectFit: 'contain',
             borderRadius: '1.5rem',
-            boxShadow: '0 30px 60px -12px rgba(0,0,0,1)',
+            boxShadow: '0 30px 60px -12px var(--border-color)',
             background: '#fff',
-            border: '1px solid rgba(255,255,255,0.1)'
+            border: '1px solid var(--border-color)'
         } : {
             width: size,
             height: size,
@@ -115,8 +115,7 @@ const AnimatedExercise = ({ images, name, size = 60, url, tipo }) => {
                         position: 'fixed',
                         inset: 0,
                         zIndex: 99999,
-                        background: 'rgba(0, 0, 0, 0.95)',
-                        backdropFilter: 'blur(15px)',
+                        background: 'var(--bg-surface)',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
@@ -141,14 +140,13 @@ const AnimatedExercise = ({ images, name, size = 60, url, tipo }) => {
 
                         <div style={{
                             textAlign: 'center',
-                            color: '#fff',
-                            background: 'rgba(255,255,255,0.05)',
+                            color: 'var(--text-primary)',
+                            background: 'var(--bg-surface)',
                             padding: '1rem 2.5rem',
                             borderRadius: '24px',
-                            backdropFilter: 'blur(10px)',
-                            border: '1px solid rgba(255,255,255,0.1)',
+                            border: '1px solid var(--border-color)',
                             width: 'fit-content',
-                            boxShadow: '0 10px 30px rgba(0,0,0,0.5)'
+                            boxShadow: 'var(--shadow-lg)'
                         }}>
                             <h2 style={{ fontSize: '1.4rem', fontWeight: 800, margin: 0, color: 'var(--primary)', lineHeight: 1.2 }}>{name}</h2>
                             <p style={{ opacity: 0.6, margin: '0.4rem 0 0 0', fontSize: '0.85rem' }}>Clique em qualquer lugar para voltar</p>

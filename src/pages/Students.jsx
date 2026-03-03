@@ -158,17 +158,17 @@ const Students = () => {
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center',
-                        background: 'rgba(255,255,255,0.02)',
-                        border: '1px solid rgba(255,255,255,0.05)',
+                        background: 'var(--border-color)',
+                        border: '1px solid var(--border-color)',
                         borderRadius: '16px',
-                        boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)'
+                        boxShadow: 'var(--shadow-sm)'
                     }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                            <button className="btn-icon" onClick={() => setSelectedStudent(null)} style={{ background: 'rgba(255,255,255,0.05)', width: '36px', height: '36px', borderRadius: '50%' }}>
+                            <button className="btn-icon" onClick={() => setSelectedStudent(null)} style={{ background: 'var(--border-color)', width: '36px', height: '36px', borderRadius: '50%' }}>
                                 <X size={20} />
                             </button>
                             <div>
-                                <h2 style={{ fontSize: '1.5rem', fontWeight: 800, margin: 0, letterSpacing: '-0.5px', color: '#fff' }}>{selectedStudent.name}</h2>
+                                <h2 style={{ fontSize: '1.5rem', fontWeight: 800, margin: 0, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>{selectedStudent.name}</h2>
                                 <p style={{ fontSize: '0.85rem', color: 'var(--primary)', fontWeight: 600, margin: 0 }}>{selectedStudent.email}</p>
                             </div>
                         </div>
@@ -185,8 +185,8 @@ const Students = () => {
                             display: 'flex',
                             padding: '0.35rem',
                             gap: '0.25rem',
-                            background: 'rgba(255,255,255,0.03)',
-                            border: '1px solid rgba(255,255,255,0.05)',
+                            background: 'var(--border-color)',
+                            border: '1px solid var(--border-color)',
                             borderRadius: '14px'
                         }}>
                             <button
@@ -194,7 +194,7 @@ const Students = () => {
                                 style={{
                                     flex: 1, padding: '0.75rem', borderRadius: '10px', border: 'none',
                                     background: activeTab === 'ativos' ? 'var(--primary)' : 'transparent',
-                                    color: activeTab === 'ativos' ? '#000' : 'rgba(255,255,255,0.5)',
+                                    color: activeTab === 'ativos' ? '#000' : 'var(--border-color)',
                                     fontWeight: 700, cursor: 'pointer', transition: 'all 0.3s ease',
                                     boxShadow: activeTab === 'ativos' ? '0 4px 15px rgba(74, 222, 128, 0.3)' : 'none'
                                 }}
@@ -206,7 +206,7 @@ const Students = () => {
                                 style={{
                                     flex: 1, padding: '0.75rem', borderRadius: '10px', border: 'none',
                                     background: activeTab === 'prescrever' ? 'var(--primary)' : 'transparent',
-                                    color: activeTab === 'prescrever' ? '#000' : 'rgba(255,255,255,0.5)',
+                                    color: activeTab === 'prescrever' ? '#000' : 'var(--border-color)',
                                     fontWeight: 700, cursor: 'pointer', transition: 'all 0.3s ease',
                                     boxShadow: activeTab === 'prescrever' ? '0 4px 15px rgba(74, 222, 128, 0.3)' : 'none'
                                 }}
@@ -218,7 +218,7 @@ const Students = () => {
                                 style={{
                                     flex: 1, padding: '0.75rem', borderRadius: '10px', border: 'none',
                                     background: activeTab === 'evolucao' ? 'var(--primary)' : 'transparent',
-                                    color: activeTab === 'evolucao' ? '#000' : 'rgba(255,255,255,0.5)',
+                                    color: activeTab === 'evolucao' ? '#000' : 'var(--border-color)',
                                     fontWeight: 700, cursor: 'pointer', transition: 'all 0.3s ease',
                                     boxShadow: activeTab === 'evolucao' ? '0 4px 15px rgba(74, 222, 128, 0.3)' : 'none'
                                 }}
@@ -235,21 +235,21 @@ const Students = () => {
                                 {workouts.find(w => w.studentId === selectedStudent.id) ? (
                                     <div style={{
                                         padding: '1.5rem',
-                                        background: 'rgba(255,255,255,0.02)',
-                                        border: '1px solid rgba(255,255,255,0.05)',
+                                        background: 'var(--border-color)',
+                                        border: '1px solid var(--border-color)',
                                         borderRadius: '16px',
-                                        boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+                                        boxShadow: 'var(--shadow-sm)',
                                         transition: 'var(--transition-normal)'
                                     }}
                                         onMouseOver={(e) => {
                                             e.currentTarget.style.transform = 'translateY(-5px)';
-                                            e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
-                                            e.currentTarget.style.boxShadow = '0 15px 40px rgba(0, 123, 255, 0.1)';
+                                            e.currentTarget.style.background = 'var(--border-color)';
+                                            e.currentTarget.style.boxShadow = '0 15px 40px transparent';
                                         }}
                                         onMouseOut={(e) => {
                                             e.currentTarget.style.transform = 'none';
-                                            e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
-                                            e.currentTarget.style.boxShadow = '0 8px 32px 0 rgba(0, 0, 0, 0.3)';
+                                            e.currentTarget.style.background = 'var(--border-color)';
+                                            e.currentTarget.style.boxShadow = '0 8px 32px 0 var(--border-color)';
                                         }}>
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
                                             <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--primary)', margin: 0 }}>Rotina Atual</h3>
@@ -271,7 +271,7 @@ const Students = () => {
                                                 >
                                                     <Trash2 size={14} style={{ marginRight: '4px' }} /> Apagar Treino
                                                 </button>
-                                                <span className="badge" style={{ background: 'rgba(255,255,255,0.05)', color: 'var(--text-secondary)' }}>
+                                                <span className="badge" style={{ background: 'var(--border-color)', color: 'var(--text-secondary)' }}>
                                                     Atualizado em: {new Date(workouts.find(w => w.studentId === selectedStudent.id).updatedAt).toLocaleDateString()}
                                                 </span>
                                             </div>
@@ -282,20 +282,20 @@ const Students = () => {
                                                     key={day.id}
                                                     style={{
                                                         padding: '1.25rem',
-                                                        background: 'rgba(255,255,255,0.02)',
-                                                        border: '1px solid rgba(255,255,255,0.05)',
+                                                        background: 'var(--border-color)',
+                                                        border: '1px solid var(--border-color)',
                                                         borderRadius: '12px',
                                                         cursor: 'pointer',
                                                         transition: 'var(--transition-normal)'
                                                     }}
                                                     onMouseOver={(e) => {
                                                         e.currentTarget.style.transform = 'translateY(-5px)';
-                                                        e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
-                                                        e.currentTarget.style.boxShadow = '0 15px 40px rgba(0, 123, 255, 0.1)';
+                                                        e.currentTarget.style.background = 'var(--border-color)';
+                                                        e.currentTarget.style.boxShadow = '0 15px 40px transparent';
                                                     }}
                                                     onMouseOut={(e) => {
                                                         e.currentTarget.style.transform = 'none';
-                                                        e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
+                                                        e.currentTarget.style.background = 'var(--border-color)';
                                                         e.currentTarget.style.boxShadow = 'none';
                                                     }}
                                                 >
@@ -315,7 +315,7 @@ const Students = () => {
                                                         }}>
                                                             {day.id}
                                                         </div>
-                                                        <span style={{ fontWeight: 800, fontSize: '1.1rem', color: '#fff' }}>{day.dayName}</span>
+                                                        <span style={{ fontWeight: 800, fontSize: '1.1rem', color: 'var(--text-primary)' }}>{day.dayName}</span>
                                                     </div>
                                                     <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0, fontWeight: 500 }}>
                                                         {day.exercises.length} exercícios
@@ -342,24 +342,24 @@ const Students = () => {
                                         padding: '2rem',
                                         textAlign: 'center',
                                         cursor: 'pointer',
-                                        background: 'rgba(255,255,255,0.02)',
-                                        border: '1px solid rgba(255,255,255,0.05)',
+                                        background: 'var(--border-color)',
+                                        border: '1px solid var(--border-color)',
                                         borderRadius: '16px',
                                         transition: 'all 0.3s ease'
                                     }}
                                     onMouseOver={(e) => {
                                         e.currentTarget.style.transform = 'translateY(-5px)';
-                                        e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
-                                        e.currentTarget.style.boxShadow = '0 15px 40px rgba(0, 123, 255, 0.1)';
+                                        e.currentTarget.style.background = 'var(--border-color)';
+                                        e.currentTarget.style.boxShadow = '0 15px 40px transparent';
                                     }}
                                     onMouseOut={(e) => {
                                         e.currentTarget.style.transform = 'none';
-                                        e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
+                                        e.currentTarget.style.background = 'var(--border-color)';
                                         e.currentTarget.style.boxShadow = 'none';
                                     }}
                                 >
                                     <Award size={48} color="var(--primary)" style={{ marginBottom: '1.25rem' }} />
-                                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, margin: '0 0 0.5rem 0', color: '#fff' }}>Usar da Biblioteca</h3>
+                                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, margin: '0 0 0.5rem 0', color: 'var(--text-primary)' }}>Usar da Biblioteca</h3>
                                     <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0 }}>Escolha um dos seus modelos prontos e defina a agenda semanal.</p>
                                 </div>
                                 <div
@@ -368,24 +368,24 @@ const Students = () => {
                                         padding: '2rem',
                                         textAlign: 'center',
                                         cursor: 'pointer',
-                                        background: 'rgba(255,255,255,0.02)',
-                                        border: '1px solid rgba(255,255,255,0.05)',
+                                        background: 'var(--border-color)',
+                                        border: '1px solid var(--border-color)',
                                         borderRadius: '16px',
                                         transition: 'all 0.3s ease'
                                     }}
                                     onMouseOver={(e) => {
                                         e.currentTarget.style.transform = 'translateY(-5px)';
-                                        e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
-                                        e.currentTarget.style.boxShadow = '0 15px 40px rgba(0, 123, 255, 0.1)';
+                                        e.currentTarget.style.background = 'var(--border-color)';
+                                        e.currentTarget.style.boxShadow = '0 15px 40px transparent';
                                     }}
                                     onMouseOut={(e) => {
                                         e.currentTarget.style.transform = 'none';
-                                        e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
+                                        e.currentTarget.style.background = 'var(--border-color)';
                                         e.currentTarget.style.boxShadow = 'none';
                                     }}
                                 >
                                     <UserPlus size={48} color="var(--accent)" style={{ marginBottom: '1.25rem' }} />
-                                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, margin: '0 0 0.5rem 0', color: '#fff' }}>Montar Sob Medida</h3>
+                                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, margin: '0 0 0.5rem 0', color: 'var(--text-primary)' }}>Montar Sob Medida</h3>
                                     <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0 }}>Crie um treino do zero, exclusivo para este aluno, sem salvar na biblioteca.</p>
                                 </div>
                             </div>
@@ -405,19 +405,19 @@ const Students = () => {
                                         transition: 'var(--transition-normal)'
                                     }}>
                                         <div style={{ fontSize: '0.75rem', color: 'var(--primary)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Treinos</div>
-                                        <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#fff' }}>{sessions?.length || 0}</div>
+                                        <div style={{ fontSize: '1.8rem', fontWeight: 900, color: 'var(--text-primary)' }}>{sessions?.length || 0}</div>
                                     </div>
                                     <div style={{
                                         padding: '1.25rem',
                                         textAlign: 'center',
-                                        background: 'rgba(255,255,255,0.02)',
-                                        border: '1px solid rgba(255,255,255,0.05)',
+                                        background: 'var(--border-color)',
+                                        border: '1px solid var(--border-color)',
                                         borderRadius: '16px',
-                                        boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+                                        boxShadow: 'var(--shadow-sm)',
                                         transition: 'var(--transition-normal)'
                                     }}>
                                         <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Duração Média</div>
-                                        <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#fff' }}>
+                                        <div style={{ fontSize: '1.8rem', fontWeight: 900, color: 'var(--text-primary)' }}>
                                             {sessions?.length > 0
                                                 ? Math.round(sessions.reduce((acc, s) => acc + (s.duration || 0), 0) / sessions.length)
                                                 : 0}<span style={{ fontSize: '1rem', color: 'var(--text-secondary)' }}>m</span>
@@ -426,14 +426,14 @@ const Students = () => {
                                     <div style={{
                                         padding: '1.25rem',
                                         textAlign: 'center',
-                                        background: 'rgba(255,255,255,0.02)',
-                                        border: '1px solid rgba(255,255,255,0.05)',
+                                        background: 'var(--border-color)',
+                                        border: '1px solid var(--border-color)',
                                         borderRadius: '16px',
-                                        boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+                                        boxShadow: 'var(--shadow-sm)',
                                         transition: 'var(--transition-normal)'
                                     }}>
                                         <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Frequência</div>
-                                        <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#fff' }}>
+                                        <div style={{ fontSize: '1.8rem', fontWeight: 900, color: 'var(--text-primary)' }}>
                                             {sessions?.length > 0
                                                 ? Math.min(100, Math.round((sessions.length / 12) * 100))
                                                 : 0}<span style={{ fontSize: '1rem', color: 'var(--text-secondary)' }}>%</span>
@@ -448,7 +448,7 @@ const Students = () => {
 
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', position: 'relative' }}>
                                         {/* Timeline Line */}
-                                        <div style={{ position: 'absolute', left: '11px', top: '10px', bottom: '10px', width: '2px', background: 'rgba(255,255,255,0.05)' }}></div>
+                                        <div style={{ position: 'absolute', left: '11px', top: '10px', bottom: '10px', width: '2px', background: 'var(--border-color)' }}></div>
 
                                         {sessions && sessions.length > 0 ? (
                                             sessions.map((session, sIdx) => (
@@ -473,13 +473,13 @@ const Students = () => {
                                                         <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'currentColor' }}></div>
                                                     </div>
 
-                                                    <div className="glass-panel hover-card" style={{ padding: '1.25rem', background: 'rgba(255,255,255,0.01)', border: '1px solid rgba(255,255,255,0.05)' }}>
+                                                    <div className="glass-panel hover-card" style={{ padding: '1.25rem', background: 'var(--border-color)', border: '1px solid var(--border-color)' }}>
                                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
                                                             <div>
                                                                 <div style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: 800, marginBottom: '0.25rem' }}>
                                                                     {new Date(session.createdAt).toLocaleDateString('pt-BR', { weekday: 'short', day: '2-digit', month: 'short' })} • {new Date(session.createdAt).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
                                                                 </div>
-                                                                <div style={{ fontWeight: 900, fontSize: '1.15rem', color: '#fff' }}>{session.dayName}</div>
+                                                                <div style={{ fontWeight: 900, fontSize: '1.15rem', color: 'var(--text-primary)' }}>{session.dayName}</div>
                                                                 <div style={{ fontSize: '0.8rem', color: 'var(--primary)', fontWeight: 600 }}>{session.workoutName}</div>
                                                             </div>
                                                             <div style={{ textAlign: 'right' }}>
@@ -497,7 +497,7 @@ const Students = () => {
 
                                                         {session.feedback?.comment && (
                                                             <div style={{
-                                                                background: 'rgba(255,255,255,0.03)',
+                                                                background: 'var(--border-color)',
                                                                 padding: '1rem',
                                                                 borderRadius: '12px',
                                                                 marginTop: '0.75rem',
@@ -557,13 +557,13 @@ const Students = () => {
                                 alignItems: 'center',
                                 padding: '0.75rem 1rem',
                                 borderRadius: '14px',
-                                background: 'rgba(255,255,255,0.03)',
-                                border: '1px solid rgba(255,255,255,0.08)',
+                                background: 'var(--border-color)',
+                                border: '1px solid var(--border-color)',
                                 gap: '0.75rem',
                                 transition: 'all 0.3s ease'
                             }}
                             onFocus={(e) => { e.currentTarget.style.border = '1px solid var(--primary)'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(74, 222, 128, 0.15)'; }}
-                            onBlur={(e) => { e.currentTarget.style.border = '1px solid rgba(255,255,255,0.08)'; e.currentTarget.style.boxShadow = 'none'; }}
+                            onBlur={(e) => { e.currentTarget.style.border = '1px solid var(--border-color)'; e.currentTarget.style.boxShadow = 'none'; }}
                         >
                             <Search size={20} color={searchTerm ? "var(--primary)" : "var(--text-secondary)"} style={{ flexShrink: 0 }} />
                             <input
@@ -574,7 +574,7 @@ const Students = () => {
                                 style={{
                                     background: 'transparent',
                                     border: 'none',
-                                    color: '#fff',
+                                    color: 'var(--text-primary)',
                                     fontSize: '0.95rem',
                                     width: '100%',
                                     outline: 'none',
@@ -589,7 +589,7 @@ const Students = () => {
                                         padding: '4px',
                                         width: '24px',
                                         height: '24px',
-                                        background: 'rgba(255,255,255,0.1)',
+                                        background: 'var(--border-color)',
                                         flexShrink: 0
                                     }}
                                 >
@@ -616,15 +616,15 @@ const Students = () => {
                                         flexDirection: 'column',
                                         gap: '1.25rem',
                                         cursor: 'pointer',
-                                        background: 'rgba(255,255,255,0.02)',
-                                        border: '1px solid rgba(255,255,255,0.05)',
+                                        background: 'var(--border-color)',
+                                        border: '1px solid var(--border-color)',
                                         borderRadius: '16px',
                                         transition: 'all 0.3s ease'
                                     }}
                                 >
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                         <div style={{ paddingRight: '1rem' }}>
-                                            <h3 style={{ fontSize: '1.35rem', fontWeight: 800, margin: '0 0 0.25rem 0', color: '#fff', letterSpacing: '-0.3px' }}>{student.name}</h3>
+                                            <h3 style={{ fontSize: '1.35rem', fontWeight: 800, margin: '0 0 0.25rem 0', color: 'var(--text-primary)', letterSpacing: '-0.3px' }}>{student.name}</h3>
                                             <p style={{ fontSize: '0.85rem', color: 'var(--primary)', margin: 0, fontWeight: 600 }}>{student.email}</p>
                                         </div>
                                         <button
@@ -642,7 +642,7 @@ const Students = () => {
                                     </div>
 
                                     <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                                        <span className="badge" style={{ background: 'rgba(255,255,255,0.05)', color: 'var(--text-secondary)' }}>
+                                        <span className="badge" style={{ background: 'var(--border-color)', color: 'var(--text-secondary)' }}>
                                             {student.phone || 'Sem fone'}
                                         </span>
                                         <span className="badge" style={{ background: 'var(--primary-glow)', color: 'var(--primary)', fontWeight: 700 }}>
@@ -656,14 +656,14 @@ const Students = () => {
                                         gap: '0.5rem',
                                         marginTop: 'auto',
                                         paddingTop: '1rem',
-                                        borderTop: '1px solid rgba(255,255,255,0.05)',
+                                        borderTop: '1px solid var(--border-color)',
                                         fontSize: '0.85rem',
                                         color: 'var(--text-secondary)',
                                         fontWeight: 600
                                     }}>
                                         <Calendar size={14} color="var(--primary)" />
                                         <span>Ver detalhes e treinos</span>
-                                        <ChevronRight size={16} style={{ marginLeft: 'auto', color: 'rgba(255,255,255,0.3)' }} />
+                                        <ChevronRight size={16} style={{ marginLeft: 'auto', color: 'var(--border-color)' }} />
                                     </div>
                                 </div>
                             ))
@@ -683,15 +683,15 @@ const Students = () => {
                         <form onSubmit={handleAddStudent} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                             <div>
                                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', display: 'block', marginBottom: '0.5rem' }}>Nome Completo</label>
-                                <input type="text" className="glass-panel" required value={newStudent.name} onChange={e => setNewStudent({ ...newStudent, name: e.target.value })} style={{ width: '100%', padding: '0.75rem', background: 'rgba(255,255,255,0.05)', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' }} />
+                                <input type="text" className="glass-panel" required value={newStudent.name} onChange={e => setNewStudent({ ...newStudent, name: e.target.value })} style={{ width: '100%', padding: '0.75rem', background: 'var(--border-color)', color: 'var(--text-primary)', border: '1px solid var(--border-color)' }} />
                             </div>
                             <div>
                                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', display: 'block', marginBottom: '0.5rem' }}>E-mail de Login</label>
-                                <input type="email" className="glass-panel" required value={newStudent.email} onChange={e => setNewStudent({ ...newStudent, email: e.target.value })} style={{ width: '100%', padding: '0.75rem', background: 'rgba(255,255,255,0.05)', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' }} />
+                                <input type="email" className="glass-panel" required value={newStudent.email} onChange={e => setNewStudent({ ...newStudent, email: e.target.value })} style={{ width: '100%', padding: '0.75rem', background: 'var(--border-color)', color: 'var(--text-primary)', border: '1px solid var(--border-color)' }} />
                             </div>
                             <div>
                                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', display: 'block', marginBottom: '0.5rem' }}>Objetivo Principal</label>
-                                <input type="text" className="glass-panel" value={newStudent.objective} onChange={e => setNewStudent({ ...newStudent, objective: e.target.value })} style={{ width: '100%', padding: '0.75rem', background: 'rgba(255,255,255,0.05)', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' }} />
+                                <input type="text" className="glass-panel" value={newStudent.objective} onChange={e => setNewStudent({ ...newStudent, objective: e.target.value })} style={{ width: '100%', padding: '0.75rem', background: 'var(--border-color)', color: 'var(--text-primary)', border: '1px solid var(--border-color)' }} />
                             </div>
                             <button type="submit" className="btn-primary" style={{ padding: '1rem', justifyContent: 'center' }}>Cadastrar Aluno</button>
                         </form>
@@ -727,8 +727,8 @@ const Students = () => {
                                                 padding: '1rem',
                                                 borderRadius: '12px',
                                                 cursor: 'pointer',
-                                                border: selectedTemplate?.id === temp.id ? '2px solid var(--primary)' : '1px solid rgba(255,255,255,0.05)',
-                                                background: selectedTemplate?.id === temp.id ? 'var(--primary-glow)' : 'rgba(255,255,255,0.02)',
+                                                border: selectedTemplate?.id === temp.id ? '2px solid var(--primary)' : '1px solid var(--border-color)',
+                                                background: selectedTemplate?.id === temp.id ? 'var(--primary-glow)' : 'var(--border-color)',
                                                 transition: 'all 0.2s'
                                             }}
                                         >
@@ -748,13 +748,13 @@ const Students = () => {
                                     <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem' }}>
                                         <button
                                             onClick={() => setScheduleType('weekly')}
-                                            style={{ flex: 1, padding: '0.75rem', borderRadius: '8px', border: 'none', background: scheduleType === 'weekly' ? 'var(--primary)' : 'rgba(255,255,255,0.05)', color: '#fff', fontWeight: 600 }}
+                                            style={{ flex: 1, padding: '0.75rem', borderRadius: '8px', border: 'none', background: scheduleType === 'weekly' ? 'var(--primary)' : 'var(--border-color)', color: 'var(--text-primary)', fontWeight: 600 }}
                                         >
                                             Semanal Fixo
                                         </button>
                                         <button
                                             onClick={() => setScheduleType('period')}
-                                            style={{ flex: 1, padding: '0.75rem', borderRadius: '8px', border: 'none', background: scheduleType === 'period' ? 'var(--accent)' : 'rgba(255,255,255,0.05)', color: '#fff', fontWeight: 600 }}
+                                            style={{ flex: 1, padding: '0.75rem', borderRadius: '8px', border: 'none', background: scheduleType === 'period' ? 'var(--accent)' : 'var(--border-color)', color: 'var(--text-primary)', fontWeight: 600 }}
                                         >
                                             Por Período
                                         </button>
@@ -764,11 +764,11 @@ const Students = () => {
                                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
                                             <div>
                                                 <label style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', display: 'block', marginBottom: '0.25rem' }}>Inicia em</label>
-                                                <input type="date" value={dateRange.start} onChange={e => setDateRange({ ...dateRange, start: e.target.value })} className="glass-panel" style={{ width: '100%', padding: '0.5rem', color: '#fff' }} />
+                                                <input type="date" value={dateRange.start} onChange={e => setDateRange({ ...dateRange, start: e.target.value })} className="glass-panel" style={{ width: '100%', padding: '0.5rem', color: 'var(--text-primary)' }} />
                                             </div>
                                             <div>
                                                 <label style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', display: 'block', marginBottom: '0.25rem' }}>Expira em</label>
-                                                <input type="date" value={dateRange.end} onChange={e => setDateRange({ ...dateRange, end: e.target.value })} className="glass-panel" style={{ width: '100%', padding: '0.5rem', color: '#fff' }} />
+                                                <input type="date" value={dateRange.end} onChange={e => setDateRange({ ...dateRange, end: e.target.value })} className="glass-panel" style={{ width: '100%', padding: '0.5rem', color: 'var(--text-primary)' }} />
                                             </div>
                                         </div>
                                     )}
@@ -780,7 +780,7 @@ const Students = () => {
                                                 <select
                                                     value={schedule[day]}
                                                     onChange={e => setSchedule({ ...schedule, [day]: e.target.value })}
-                                                    style={{ width: '100%', padding: '0.4rem', borderRadius: '6px', background: schedule[day] ? 'rgba(99,102,241,0.2)' : 'rgba(255,255,255,0.05)', color: '#fff', border: 'none', fontSize: '0.8rem' }}
+                                                    style={{ width: '100%', padding: '0.4rem', borderRadius: '6px', background: schedule[day] ? 'rgba(99,102,241,0.2)' : 'var(--border-color)', color: 'var(--text-primary)', border: 'none', fontSize: '0.8rem' }}
                                                 >
                                                     <option value="">Off</option>
                                                     {selectedTemplate.routine.map(r => <option key={r.id} value={r.id}>{r.id}</option>)}

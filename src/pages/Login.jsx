@@ -67,7 +67,7 @@ const Login = () => {
                     }}>
                         <Dumbbell size={32} color="var(--primary)" />
                     </div>
-                    <h1 style={{ fontSize: '2rem', fontWeight: 800, color: '#fff', marginBottom: '0.5rem' }}>
+                    <h1 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
                         FitPro <span style={{ color: 'var(--primary)' }}>SaaS</span>
                     </h1>
                     <p style={{ color: 'var(--text-secondary)' }}>
@@ -86,7 +86,7 @@ const Login = () => {
                                 placeholder="Seu nome"
                                 required={!isLogin}
                                 className="glass-panel"
-                                style={{ width: '100%', padding: '0.75rem 1rem', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
+                                style={{ width: '100%', padding: '0.75rem 1rem', background: 'var(--border-color)', border: '1px solid var(--border-color)' }}
                             />
                         </div>
                     )}
@@ -100,7 +100,7 @@ const Login = () => {
                             placeholder="seu@email.com"
                             required
                             className="glass-panel"
-                            style={{ width: '100%', padding: '0.75rem 1rem', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
+                            style={{ width: '100%', padding: '0.75rem 1rem', background: 'var(--border-color)', border: '1px solid var(--border-color)' }}
                         />
                     </div>
 
@@ -113,7 +113,7 @@ const Login = () => {
                             placeholder="••••••••"
                             required
                             className="glass-panel"
-                            style={{ width: '100%', padding: '0.75rem 1rem', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
+                            style={{ width: '100%', padding: '0.75rem 1rem', background: 'var(--border-color)', border: '1px solid var(--border-color)' }}
                         />
                     </div>
 

@@ -19,7 +19,7 @@ const Dashboard = () => {
             </div>
 
             <header style={{ marginBottom: '2rem', position: 'relative', zIndex: 10 }}>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '1.125rem', margin: 0 }}>Resumo do seu FitPro hoje, <strong style={{ color: '#fff' }}>{profile?.name?.split(' ')[0] || user?.displayName?.split(' ')[0] || 'Treinador'}</strong></p>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '1.125rem', margin: 0 }}>Resumo do seu FitPro hoje, <strong style={{ color: 'var(--text-primary)' }}>{profile?.name?.split(' ')[0] || user?.displayName?.split(' ')[0] || 'Treinador'}</strong></p>
             </header>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', position: 'relative', zIndex: 10 }}>
@@ -29,7 +29,7 @@ const Dashboard = () => {
                         <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600 }}>Total de Alunos</p>
                         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '3.5rem', fontWeight: 700, marginTop: '0.5rem', lineHeight: 1 }}>{students.length}</h2>
                     </div>
-                    <div style={{ background: 'linear-gradient(135deg, rgba(0,123,255,0.2), rgba(0,191,255,0.1))', padding: '1.25rem', borderRadius: '24px', border: '1px solid rgba(0,123,255,0.2)', boxShadow: 'inset 0 0 20px rgba(0,123,255,0.1)' }}>
+                    <div style={{ background: 'linear-gradient(135deg, transparent, transparent)', padding: '1.25rem', borderRadius: '24px', border: '1px solid transparent', boxShadow: 'inset 0 0 20px transparent' }}>
                         <Users size={36} color="var(--primary)" />
                     </div>
                 </div>
@@ -53,7 +53,7 @@ const Dashboard = () => {
 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
                     <Link to="/students" className="glass-panel hover-card group" style={{ padding: '1.5rem 2rem', display: 'flex', alignItems: 'center', gap: '1rem', borderRadius: '1.25rem', textDecoration: 'none' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(0,123,255,0.1)', border: '1px solid rgba(0,123,255,0.2)' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '48px', height: '48px', borderRadius: '12px', background: 'transparent', border: '1px solid transparent' }}>
                             <Users size={24} color="var(--primary)" />
                         </div>
                         <span style={{ fontWeight: 600, fontSize: '1.125rem', color: 'var(--text-primary)' }}>Gerenciar Alunos</span>

@@ -86,8 +86,8 @@ const Workouts = () => {
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'space-between',
-                            border: '1px solid rgba(255,255,255,0.05)',
-                            background: 'rgba(255,255,255,0.02)',
+                            border: '1px solid var(--border-color)',
+                            background: 'var(--border-color)',
                             cursor: 'pointer'
                         }}
                     >
@@ -109,14 +109,14 @@ const Workouts = () => {
                                 <h3 style={{ fontSize: '1.1rem', margin: 0, fontWeight: 700, whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>{temp.name}</h3>
                                 <div style={{ display: 'flex', gap: '0.4rem', marginTop: '0.35rem', alignItems: 'center' }}>
                                     <span style={{ fontSize: '0.65rem', color: 'var(--primary)', fontWeight: 800, textTransform: 'uppercase' }}>{temp.level}</span>
-                                    <span style={{ width: '3px', height: '3px', borderRadius: '50%', background: 'rgba(255,255,255,0.2)' }}></span>
+                                    <span style={{ width: '3px', height: '3px', borderRadius: '50%', background: 'var(--border-color)' }}></span>
                                     <span style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>{temp.routine.length} treinos • {temp.goal}</span>
                                 </div>
                             </div>
                         </div>
 
                         <div style={{ display: 'flex', gap: '0.5rem', marginLeft: '1rem' }}>
-                            <button className="btn-icon" style={{ width: '32px', height: '32px', color: 'rgba(255,255,255,0.3)' }} onClick={(e) => { e.stopPropagation(); deleteTemplate(temp.id); }}>
+                            <button className="btn-icon" style={{ width: '32px', height: '32px', color: 'var(--border-color)' }} onClick={(e) => { e.stopPropagation(); deleteTemplate(temp.id); }}>
                                 <Trash2 size={16} />
                             </button>
                         </div>

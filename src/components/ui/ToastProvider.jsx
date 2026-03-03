@@ -60,7 +60,7 @@ export const ToastProvider = ({ children }) => {
                     display: flex;
                     align-items: center;
                     gap: 0.85rem;
-                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+                    box-shadow: 0 10px 25px var(--border-color);
                     color: #fff;
                 }
                 .toast-icon {

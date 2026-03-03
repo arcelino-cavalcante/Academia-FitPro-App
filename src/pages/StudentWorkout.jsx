@@ -97,15 +97,13 @@ const StudentWorkout = () => {
                 position: 'sticky',
                 top: '-1rem',
                 zIndex: 50,
-                background: 'rgba(5, 10, 20, 0.85)',
-                backdropFilter: 'blur(20px)',
-                WebkitBackdropFilter: 'blur(20px)',
-                borderBottom: '1px solid rgba(255,255,255,0.05)',
+                background: 'var(--bg-surface)',
+                borderBottom: '1px solid var(--border-color)',
                 padding: '1.25rem 1rem 1rem 1rem',
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.5)'
+                boxShadow: 'var(--shadow-sm)'
             }}>
                 {trainingState === 'active' && (
                     <div style={{
@@ -127,7 +125,7 @@ const StudentWorkout = () => {
                 )}
             </div>
 
-            <header style={{ marginBottom: '2rem', background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.05)', boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)' }}>
+            <header style={{ marginBottom: '2rem', background: 'var(--border-color)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-sm)' }}>
                 {/* Iniciar Treino Content removed from header display flex since it moved up */}
 
                 {trainingState === 'idle' && (
@@ -171,10 +169,10 @@ const StudentWorkout = () => {
                                     padding: '1.25rem 2rem',
                                     whiteSpace: 'nowrap',
                                     borderRadius: '16px',
-                                    border: selectedDayIndex === idx ? '1px solid var(--primary)' : '1px solid rgba(255,255,255,0.05)',
-                                    background: selectedDayIndex === idx ? 'var(--primary-glow)' : 'rgba(255,255,255,0.02)',
+                                    border: selectedDayIndex === idx ? '1px solid var(--primary)' : '1px solid var(--border-color)',
+                                    background: selectedDayIndex === idx ? 'var(--primary-glow)' : 'var(--border-color)',
                                     color: selectedDayIndex === idx ? 'var(--primary)' : 'var(--text-secondary)',
-                                    boxShadow: selectedDayIndex === idx ? 'inset 0 0 20px rgba(0, 123, 255, 0.2), 0 8px 32px 0 rgba(0, 0, 0, 0.3)' : '0 4px 15px rgba(0,0,0,0.1)',
+                                    boxShadow: selectedDayIndex === idx ? 'inset 0 0 20px transparent, 0 8px 32px 0 var(--border-color)' : '0 4px 15px var(--border-color)',
                                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                                     display: 'flex',
                                     flexDirection: 'column',
@@ -212,8 +210,8 @@ const StudentWorkout = () => {
                                 fontWeight: 900,
                                 borderLeft: '4px solid var(--primary)',
                                 paddingLeft: '0.8rem',
-                                background: 'linear-gradient(90deg, rgba(0, 123, 255, 0.1) 0%, transparent 100%)',
-                                color: '#fff',
+                                background: 'linear-gradient(90deg, transparent 0%, transparent 100%)',
+                                color: 'var(--text-primary)',
                                 letterSpacing: '-0.02em',
                                 margin: 0,
                                 paddingTop: '0.25rem',
@@ -231,12 +229,12 @@ const StudentWorkout = () => {
                         {currentDay.exercises.map((ex, exIdx) => (
                             <div key={ex.exId || exIdx} style={{
                                 padding: '1rem',
-                                border: '1px solid rgba(255,255,255,0.05)',
-                                background: 'rgba(255,255,255,0.02)',
+                                border: '1px solid var(--border-color)',
+                                background: 'var(--border-color)',
                                 position: 'relative',
                                 overflow: 'hidden',
                                 borderRadius: '16px',
-                                boxShadow: '0 6px 24px 0 rgba(0, 0, 0, 0.3)',
+                                boxShadow: 'var(--shadow-sm)',
                                 transition: 'var(--transition-normal)'
                             }}>
                                 {ex.isAdvanced && <div style={{ position: 'absolute', top: 0, left: 0, width: '4px', height: '100%', background: 'var(--primary)' }}></div>}
@@ -258,13 +256,13 @@ const StudentWorkout = () => {
 
                                 {!ex.isAdvanced ? (
                                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem' }}>
-                                        <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', padding: '0.6rem', borderRadius: '12px', textAlign: 'center' }}>
+                                        <div style={{ background: 'var(--border-color)', border: '1px solid var(--border-color)', padding: '0.6rem', borderRadius: '12px', textAlign: 'center' }}>
                                             <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.5px' }}>Séries</div>
-                                            <div style={{ fontWeight: 900, color: '#fff', fontSize: '1.15rem' }}>{ex.sets}</div>
+                                            <div style={{ fontWeight: 900, color: 'var(--text-primary)', fontSize: '1.15rem' }}>{ex.sets}</div>
                                         </div>
-                                        <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', padding: '0.6rem', borderRadius: '12px', textAlign: 'center' }}>
+                                        <div style={{ background: 'var(--border-color)', border: '1px solid var(--border-color)', padding: '0.6rem', borderRadius: '12px', textAlign: 'center' }}>
                                             <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.5px' }}>Reps</div>
-                                            <div style={{ fontWeight: 900, color: '#fff', fontSize: '1.15rem' }}>{ex.reps}</div>
+                                            <div style={{ fontWeight: 900, color: 'var(--text-primary)', fontSize: '1.15rem' }}>{ex.reps}</div>
                                         </div>
                                         <div style={{ background: 'rgba(99,102,241,0.08)', border: '1px solid rgba(99,102,241,0.2)', padding: '0.6rem', borderRadius: '12px', textAlign: 'center' }}>
                                             <div style={{ fontSize: '0.6rem', color: '#818cf8', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.5px' }}>Descanso</div>
@@ -274,12 +272,12 @@ const StudentWorkout = () => {
                                 ) : (
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                                         {ex.detailedSets?.map((set, sIdx) => (
-                                            <div key={sIdx} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', padding: '0.6rem 0.6rem', borderRadius: '12px', transition: 'var(--transition-fast)' }}>
+                                            <div key={sIdx} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--border-color)', border: '1px solid var(--border-color)', padding: '0.6rem 0.6rem', borderRadius: '12px', transition: 'var(--transition-fast)' }}>
                                                 <div style={{
                                                     width: '24px',
                                                     height: '24px',
                                                     borderRadius: '50%',
-                                                    background: 'rgba(0, 123, 255, 0.1)',
+                                                    background: 'transparent',
                                                     border: '1px solid var(--primary)',
                                                     display: 'flex',
                                                     alignItems: 'center',
@@ -287,13 +285,13 @@ const StudentWorkout = () => {
                                                     fontSize: '0.7rem',
                                                     fontWeight: 900,
                                                     color: 'var(--primary)',
-                                                    boxShadow: '0 0 10px rgba(0, 123, 255, 0.2)'
+                                                    boxShadow: '0 0 10px transparent'
                                                 }}>
                                                     {sIdx + 1}
                                                 </div>
                                                 <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                                                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
-                                                        <span style={{ fontSize: '0.9rem', fontWeight: 800, color: '#fff' }}>{set.reps} <span style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', fontWeight: 600 }}>REPS</span></span>
+                                                        <span style={{ fontSize: '0.9rem', fontWeight: 800, color: 'var(--text-primary)' }}>{set.reps} <span style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', fontWeight: 600 }}>REPS</span></span>
                                                         <span style={{
                                                             fontSize: '0.6rem',
                                                             padding: '0.15rem 0.4rem',
@@ -344,7 +342,7 @@ const StudentWorkout = () => {
                                                                 textTransform: 'uppercase',
                                                                 letterSpacing: '0.5px',
                                                                 color: '#94a3b8',
-                                                                background: 'rgba(255,255,255,0.05)',
+                                                                background: 'var(--border-color)',
                                                             }}>
                                                                 <Clock size={10} style={{ strokeWidth: 3 }} />
                                                                 {set.time ? set.time : (ex.rest ? ex.rest : '60s')}
@@ -361,8 +359,8 @@ const StudentWorkout = () => {
                                                             width: '24px',
                                                             height: '24px',
                                                             borderRadius: '6px',
-                                                            border: '2px solid rgba(255,255,255,0.2)',
-                                                            background: 'rgba(255,255,255,0.05)',
+                                                            border: '2px solid var(--border-color)',
+                                                            background: 'var(--border-color)',
                                                             cursor: 'pointer',
                                                             position: 'relative',
                                                             transition: 'all 0.2s'
@@ -374,8 +372,8 @@ const StudentWorkout = () => {
                                                                 e.target.style.borderColor = 'var(--primary)';
                                                                 e.target.style.boxShadow = '0 0 10px var(--primary-glow)';
                                                             } else {
-                                                                e.target.style.background = 'rgba(255,255,255,0.05)';
-                                                                e.target.style.borderColor = 'rgba(255,255,255,0.2)';
+                                                                e.target.style.background = 'var(--border-color)';
+                                                                e.target.style.borderColor = 'var(--border-color)';
                                                                 e.target.style.boxShadow = 'none';
                                                             }
                                                         }}
@@ -416,19 +414,17 @@ const StudentWorkout = () => {
                         <div className="animate-scale-in" style={{
                             maxWidth: '400px',
                             width: '90%',
-                            background: 'rgba(5, 10, 20, 0.85)',
-                            backdropFilter: 'blur(20px)',
-                            border: '1px solid rgba(255,255,255,0.08)',
+                            background: 'var(--bg-surface)',
+                            border: '1px solid var(--border-color)',
                             borderRadius: '24px',
                             padding: '2rem',
-                            boxShadow: '0 20px 50px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.05)',
+                            boxShadow: 'var(--shadow-lg)',
                             position: 'relative',
                             overflow: 'hidden'
                         }}>
-                            <div style={{ position: 'absolute', top: '-50%', left: '-50%', width: '200%', height: '200%', background: 'radial-gradient(circle at top, rgba(0,123,255,0.15) 0%, transparent 50%)', pointerEvents: 'none', zIndex: 0 }}></div>
 
                             <div style={{ textAlign: 'center', marginBottom: '1.5rem', position: 'relative', zIndex: 1 }}>
-                                <div style={{ background: 'var(--primary-glow)', width: '70px', height: '70px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.25rem', border: '1px solid rgba(0,123,255,0.3)', boxShadow: '0 0 20px rgba(0,123,255,0.2)' }}>
+                                <div style={{ background: 'var(--primary-glow)', width: '70px', height: '70px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.25rem', border: '1px solid transparent', boxShadow: '0 0 20px transparent' }}>
                                     <Award size={36} color="var(--primary)" />
                                 </div>
                                 <h2 style={{ fontSize: '1.75rem', fontWeight: 900, marginBottom: '0.25rem', background: 'linear-gradient(to right, #fff, #aaa)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Treino Finalizado!</h2>
@@ -443,13 +439,13 @@ const StudentWorkout = () => {
                                         style={{
                                             padding: '0.85rem',
                                             borderRadius: '12px',
-                                            border: feedback.intensity === level ? '1px solid var(--primary)' : '1px solid rgba(255,255,255,0.05)',
-                                            background: feedback.intensity === level ? 'rgba(0, 123, 255, 0.1)' : 'rgba(255,255,255,0.02)',
+                                            border: feedback.intensity === level ? '1px solid var(--primary)' : '1px solid var(--border-color)',
+                                            background: feedback.intensity === level ? 'transparent' : 'var(--border-color)',
                                             color: feedback.intensity === level ? '#fff' : 'var(--text-secondary)',
                                             fontSize: '0.9rem',
                                             fontWeight: feedback.intensity === level ? 800 : 600,
                                             transition: 'all 0.2s',
-                                            boxShadow: feedback.intensity === level ? '0 0 15px rgba(0, 123, 255, 0.2)' : 'none'
+                                            boxShadow: feedback.intensity === level ? '0 0 15px transparent' : 'none'
                                         }}
                                     >
                                         {level}
@@ -465,11 +461,11 @@ const StudentWorkout = () => {
                                     placeholder="Ex: Senti um pouco de dor no ombro esquerdo..."
                                     style={{
                                         width: '100%',
-                                        background: 'rgba(0,0,0,0.2)',
-                                        border: '1px solid rgba(255,255,255,0.08)',
+                                        background: 'var(--bg-surface)',
+                                        border: '1px solid var(--border-color)',
                                         borderRadius: '16px',
                                         padding: '1.25rem',
-                                        color: '#fff',
+                                        color: 'var(--text-primary)',
                                         fontSize: '0.95rem',
                                         minHeight: '120px',
                                         resize: 'none',
@@ -477,7 +473,7 @@ const StudentWorkout = () => {
                                         transition: 'border-color 0.2s'
                                     }}
                                     onFocus={(e) => e.target.style.borderColor = 'var(--primary)'}
-                                    onBlur={(e) => e.target.style.borderColor = 'rgba(255,255,255,0.08)'}
+                                    onBlur={(e) => e.target.style.borderColor = 'var(--border-color)'}
                                 />
                             </div>
 
